@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Building : MonoBehaviour
 {
@@ -23,7 +24,8 @@ public class Building : MonoBehaviour
             //float distanceThisFrame = 70f * Time.deltaTime;
             //transform.Translate(dir.normalized * distanceThisFrame, Space.World);
 
-            //unitNew.GetComponent<NavMeshAgent>().SetDestination(hit.point); 
+            NavMeshAgent myAgent = unitNew.GetComponent<NavMeshAgent>();
+            myAgent.SetDestination(transform.Find("BannerPoint").transform.position);
         }
     }
 }
