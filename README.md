@@ -1,1 +1,2 @@
 # realTimeStrategy
+Initial commit test
