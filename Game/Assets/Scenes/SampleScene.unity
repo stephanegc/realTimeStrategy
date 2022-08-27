@@ -1877,14 +1877,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5725985566528160690, guid: 2fb5f36835b01a945a0dc87295af20c6, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5725985566528160690, guid: 2fb5f36835b01a945a0dc87295af20c6, type: 3}
-      propertyPath: ground.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
     - target: {fileID: 6583983020574989138, guid: 2fb5f36835b01a945a0dc87295af20c6, type: 3}
       propertyPath: m_Name
       value: VillagerMiner
@@ -2265,7 +2257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2727467300158061503, guid: a19bdb86dc6589b45b11a6beb5718f0d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: -22
       objectReference: {fileID: 0}
     - target: {fileID: 2727467300158061503, guid: a19bdb86dc6589b45b11a6beb5718f0d, type: 3}
       propertyPath: m_LocalRotation.w

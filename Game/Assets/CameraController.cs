@@ -21,18 +21,16 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Move camera ==========================================================================
-        // Vérification on/off
         Move();
-
-        // Zoom camera ===========================================================================
         Zoom();
-              
 
-        // Casting Ray ===========================================================================
         if (Input.GetMouseButtonDown(0))
         {
-            CastRay();
+            CastRay("left");
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            CastRay("right");
         }
     }
 
@@ -85,9 +83,33 @@ public class CameraController : MonoBehaviour
         transform.position = pos;
     }
 
-    private void CastRay()
+    private void CastRay(string mouseButton)
     {
         RaycastHit hit;
         Ray ray = myCam.ScreenPointToRay(Input.mousePosition);
+
+        if (mouseButton == "left")
+        {
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, clickable))
+            {
+                Debug.Log("Unit hit by raycast !");
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    UnitSelections.Instance.ShiftClickSelect(hit.collider.gameObject);
+                }
+                else
+                {
+                    UnitSelections.Instance.ClickSelect(hit.collider.gameObject);
+                }
+            }
+            else
+            {
+                if (!Input.GetKey(KeyCode.LeftShift))
+                {
+                    UnitSelections.Instance.DeselectAll();
+
+                }
+            }
+        }
     }
 }
