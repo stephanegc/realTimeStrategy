@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    Camera myCam;
+    public LayerMask clickable;
+    public LayerMask ground;
     private bool canMove = true;
     public float panSpeed = 30f;
     public float panBorder = 10f;
@@ -9,10 +12,32 @@ public class CameraController : MonoBehaviour
     private int minY = 20;
     private int maxY = 80;
 
+    void Start()
+    {
+        myCam = Camera.main;
+    }
+
+
     // Update is called once per frame
     void Update()
     {
+        // Move camera ==========================================================================
         // Vérification on/off
+        Move();
+
+        // Zoom camera ===========================================================================
+        Zoom();
+              
+
+        // Casting Ray ===========================================================================
+        if (Input.GetMouseButtonDown(0))
+        {
+            CastRay();
+        }
+    }
+
+    private void Move()
+    {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             canMove = !canMove;
@@ -43,19 +68,26 @@ public class CameraController : MonoBehaviour
         {
             transform.Translate(Vector3.right * panSpeed * Time.deltaTime, Space.World);
         }
+    }
 
-        // Zoom
+    private void Zoom()
+    {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll == 0f)
         {
             return;
         }
-
         Vector3 pos = transform.position;
         pos.y -= Mathf.Round(scroll * 1000 * scrollSpeed * Time.deltaTime);
         Debug.Log("position:" + pos.y);
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
         Debug.Log("position clamped:" + pos.y);
         transform.position = pos;
+    }
+
+    private void CastRay()
+    {
+        RaycastHit hit;
+        Ray ray = myCam.ScreenPointToRay(Input.mousePosition);
     }
 }
