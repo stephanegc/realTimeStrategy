@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    // Click
     Camera myCam;
     public LayerMask clickable;
     public LayerMask ground;
+
+    // Move + Zoom
     private bool canMove = true;
     public float panSpeed = 30f;
     public float panBorder = 10f;
@@ -12,9 +15,20 @@ public class CameraController : MonoBehaviour
     private int minY = 20;
     private int maxY = 80;
 
+    // Drag
+    [SerializeField]
+    private RectTransform boxVisual;
+    private Rect selectionBox;
+    Vector2 startPosition;
+    Vector2 endPosition;
+
     void Start()
     {
         myCam = Camera.main;
+        startPosition = Vector2.zero;
+        endPosition = Vector2.zero;
+        DrawVisual();
+        DrawSelection();
     }
 
 
@@ -24,13 +38,33 @@ public class CameraController : MonoBehaviour
         Move();
         Zoom();
 
+        // when clicked
         if (Input.GetMouseButtonDown(0))
         {
             CastRay("left");
+            startPosition = Input.mousePosition;
+            selectionBox = new Rect();
         }
         if (Input.GetMouseButtonDown(1))
         {
             CastRay("right");
+        }
+
+        // when dragging
+        if (Input.GetMouseButton(0))
+        {
+            endPosition = Input.mousePosition;
+            DrawVisual();
+            DrawSelection();
+        }
+        // when released click
+        if (Input.GetMouseButtonUp(0))
+        {
+            Debug.Log("Left mouse button released ! Adding selected units via drag");
+            SelectUnits();
+            startPosition = Vector2.zero;
+            endPosition = Vector2.zero;
+            DrawVisual();
         }
     }
 
@@ -109,6 +143,71 @@ public class CameraController : MonoBehaviour
                     UnitSelections.Instance.DeselectAll();
 
                 }
+            }
+        }
+
+        //if (mouseButton == "right")
+        //{
+        //    foreach (var unit in UnitSelections.Instance.unitsSelected)
+        //    {
+        //        if (unit.GetComponent<MoveableUnit>() != null)
+        //        {
+        //            MoveableUnit unitTemp = unit.GetComponent<MoveableUnit>();
+        //            unitTemp.Move();
+        //        }
+        //    }
+        //}
+    }
+
+    void DrawVisual()
+    {
+        Vector2 boxStart = startPosition;
+        Vector2 boxEnd = endPosition;
+        Vector2 boxCenter = (boxStart + boxEnd) / 2;
+        boxVisual.position = boxCenter;
+        Vector2 boxSize = new Vector2(Mathf.Abs(boxStart.x - boxEnd.x), Mathf.Abs(boxStart.y - boxEnd.y));
+        boxVisual.sizeDelta = boxSize;
+    }
+
+    void DrawSelection()
+    {
+        // Check X direction
+        if (Input.mousePosition.x < startPosition.x)
+        {
+            // Dragging left 
+            selectionBox.xMin = Input.mousePosition.x;
+            selectionBox.xMax = startPosition.x;
+        }
+        else
+        {
+            // Dragging right
+            selectionBox.xMin = startPosition.x;
+            selectionBox.xMax = Input.mousePosition.x;
+        }
+
+        // Check Y direction
+        if (Input.mousePosition.y < startPosition.y)
+        {
+            // Dragging down
+            selectionBox.yMin = Input.mousePosition.y;
+            selectionBox.yMax = startPosition.y;
+        }
+        else
+        {
+            // Dragging up
+            selectionBox.yMin = startPosition.y;
+            selectionBox.yMax = Input.mousePosition.y;
+        }
+    }
+
+    void SelectUnits()
+    {
+        foreach (var unit in UnitSelections.Instance.unitList)
+        {
+            if (selectionBox.Contains(myCam.WorldToScreenPoint(unit.transform.position)))
+            {
+                Debug.Log("Sending the unit to the DragSelect");
+                UnitSelections.Instance.DragSelect(unit);
             }
         }
     }

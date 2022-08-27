@@ -387,6 +387,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &506641075 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6583983020574989138, guid: 2fb5f36835b01a945a0dc87295af20c6, type: 3}
+  m_PrefabInstance: {fileID: 1452912418148555005}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &506641083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506641075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d21b711e4c766ac45b09fb4926499731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  isSelected: 0
 --- !u!1 &542462509
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,12 +496,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c88fef69bf101ac46a6ffa69413db393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickable:
-    serializedVersion: 2
-    m_Bits: 256
-  ground:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!1 &612722744
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,6 +924,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d0faaae7e737474c8f0dc6a06851374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickable:
+    serializedVersion: 2
+    m_Bits: 0
+  ground:
+    serializedVersion: 2
+    m_Bits: 0
   panSpeed: 30
   panBorder: 10
   scrollSpeed: 5
@@ -1877,6 +1896,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5725985566528160689, guid: 2fb5f36835b01a945a0dc87295af20c6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6583983020574989138, guid: 2fb5f36835b01a945a0dc87295af20c6, type: 3}
       propertyPath: m_Name
       value: VillagerMiner
@@ -1925,7 +1948,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5725985566528160689, guid: 2fb5f36835b01a945a0dc87295af20c6, type: 3}
+    - {fileID: 5725985566528160690, guid: 2fb5f36835b01a945a0dc87295af20c6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2fb5f36835b01a945a0dc87295af20c6, type: 3}
 --- !u!1001 &1556268944379710349
 PrefabInstance:
