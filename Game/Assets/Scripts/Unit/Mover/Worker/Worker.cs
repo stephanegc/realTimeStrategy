@@ -5,8 +5,9 @@ using UnityEngine;
 public class Worker : Mover
 {
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         canGatherResources = true;
         maxHealth = 100;
     }

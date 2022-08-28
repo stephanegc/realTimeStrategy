@@ -7,8 +7,10 @@ public class Building : Unit
 {
     public Mover mover;
 
-    private void Awake()
+    // Start is called before the first frame update
+    protected override void Start()
     {
+        base.Start();
         canCreateUnits = true;
         maxHealth = 1000;
     }

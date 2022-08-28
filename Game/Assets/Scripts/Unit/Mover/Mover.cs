@@ -9,7 +9,7 @@ public class Mover : Unit
     public Vector3 targetPosition;
     private Transform targetUnit;
 
-    private void Start()
+    void Start()
     {
         canMove = true;
         canAttack = true;
