@@ -29,6 +29,7 @@ public class UnitSelections : MonoBehaviour
         Debug.Log("Adding unit to the list");
         unitsSelected.Add(unitToAdd);
         unitToAdd.transform.Find("SelectionHighlight").gameObject.SetActive(true);
+        unitToAdd.isSelected = true;
     }
 
     public void ShiftClickSelect(Unit unitToAdd)
@@ -37,11 +38,13 @@ public class UnitSelections : MonoBehaviour
         {
             unitsSelected.Add(unitToAdd);
             unitToAdd.transform.Find("SelectionHighlight").gameObject.SetActive(true);
+            unitToAdd.isSelected = true;
         }
         else
         {
             unitToAdd.transform.Find("SelectionHighlight").gameObject.SetActive(false);
             unitsSelected.Remove(unitToAdd);
+            unitToAdd.isSelected = false;
         }
     }
 
@@ -52,6 +55,7 @@ public class UnitSelections : MonoBehaviour
             Debug.Log("Adding selected unit via drag to unitList and setting graphics to active");
             unitsSelected.Add(unitToAdd);
             unitToAdd.transform.Find("SelectionHighlight").gameObject.SetActive(true);
+            unitToAdd.isSelected = true;
         }
     }
 
@@ -62,6 +66,7 @@ public class UnitSelections : MonoBehaviour
         foreach (var unit in unitsSelected)
         {
             unit.transform.Find("SelectionHighlight").gameObject.SetActive(false);
+            unit.isSelected = false;
         }
         unitsSelected.Clear();
     }
