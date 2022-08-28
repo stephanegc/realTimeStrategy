@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Unit : MonoBehaviour
 {
-    private int maxHealth;
+    public int maxHealth;
     public int health;
     public bool isSelected = false;
     public bool canMove = false;
@@ -17,6 +17,7 @@ public class Unit : MonoBehaviour
     {
         //add this unit to the list
         UnitSelections.Instance.unitList.Add(this.gameObject);
+        health = maxHealth;
     }
 
     void OnDestroy()

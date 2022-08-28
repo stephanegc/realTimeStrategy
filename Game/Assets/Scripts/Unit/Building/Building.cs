@@ -11,6 +11,7 @@ public class Building : Unit
     void Start()
     {
         canCreateUnits = true;
+        maxHealth = 1000;
     }
 
     // Update is called once per frame

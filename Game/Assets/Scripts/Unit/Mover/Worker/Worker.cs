@@ -8,6 +8,7 @@ public class Worker : Mover
     void Start()
     {
         canGatherResources = true;
+        maxHealth = 100;
     }
 
     // Update is called once per frame
