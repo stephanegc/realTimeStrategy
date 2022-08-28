@@ -18,9 +18,8 @@ public class Building : Unit
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.B) && this.isSelected)
         {
-            Debug.Log("SELECTED ?: " + this.isSelected);
             CreateMover(mover);
         }
     }
