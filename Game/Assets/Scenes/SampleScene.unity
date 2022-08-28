@@ -523,7 +523,31 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6583983020574989138, guid: 2fb5f36835b01a945a0dc87295af20c6, type: 3}
   m_PrefabInstance: {fileID: 581125912}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &581125914
+--- !u!114 &581125915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581125913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f8468ccb40f5d441893ad679deef566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  isSelected: 0
+  canMove: 0
+  canCreateUnits: 0
+  canAttack: 0
+  myAgent: {fileID: 581125918}
+  targetPosition: {x: 0, y: 0, z: 0}
+--- !u!195 &581125918 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 5725985566528160688, guid: 2fb5f36835b01a945a0dc87295af20c6, type: 3}
+  m_PrefabInstance: {fileID: 581125912}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &581125921
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -540,6 +564,25 @@ MonoBehaviour:
   canMove: 0
   canCreateUnits: 0
   canAttack: 0
+--- !u!114 &581125922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581125913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8417529a2d8a8be47800521d3f2802a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  isSelected: 0
+  canMove: 0
+  canCreateUnits: 0
+  canAttack: 0
+  myAgent: {fileID: 581125918}
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &612722744
 GameObject:
   m_ObjectHideFlags: 0

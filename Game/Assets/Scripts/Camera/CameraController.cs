@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
     Camera myCam;
     public LayerMask clickable;
     public LayerMask ground;
+    RaycastHit hit;
 
     // Move + Zoom
     private bool canMove = true;
@@ -119,7 +120,7 @@ public class CameraController : MonoBehaviour
 
     private void CastRay(string mouseButton)
     {
-        RaycastHit hit;
+        
         Ray ray = myCam.ScreenPointToRay(Input.mousePosition);
 
         if (mouseButton == "left")
@@ -146,17 +147,22 @@ public class CameraController : MonoBehaviour
             }
         }
 
-        //if (mouseButton == "right")
-        //{
-        //    foreach (var unit in UnitSelections.Instance.unitsSelected)
-        //    {
-        //        if (unit.GetComponent<MoveableUnit>() != null)
-        //        {
-        //            MoveableUnit unitTemp = unit.GetComponent<MoveableUnit>();
-        //            unitTemp.Move();
-        //        }
-        //    }
-        //}
+        if (mouseButton == "right")
+        {
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            {
+                Debug.Log("Unit hit by raycast !");
+                foreach (var unit in UnitSelections.Instance.unitsSelected)
+                {
+                    if (unit.GetComponent<Mover>() != null)
+                    {
+                        Mover mover = unit.GetComponent<Mover>();
+                        mover.targetPosition = hit.point;
+                        mover.Move();
+                    }
+                }
+            }            
+        }
     }
 
     void DrawVisual()
