@@ -5,12 +5,12 @@ using UnityEngine.AI;
 
 public class Building : Unit
 {
-    public Mover unit;
+    public Mover mover;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        canCreateUnits = true;
     }
 
     // Update is called once per frame
@@ -18,16 +18,16 @@ public class Building : Unit
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            CreateUnit(unit);
+            CreateMover(mover);
         }
     }
 
-    void CreateUnit(Mover unit)
+    void CreateMover(Mover mover)
     {
         Debug.Log("Creating unit at spawnPoint!");
-        Mover unitNew = (Mover)Instantiate(unit, transform.Find("SpawnPoint").transform.position, transform.Find("SpawnPoint").transform.rotation);
-        NavMeshAgent myAgent = unitNew.GetComponent<NavMeshAgent>();
-        unitNew.targetPosition = transform.Find("BannerPoint").transform.position;
-        unitNew.Move();
+        Mover moverNew = (Mover)Instantiate(mover, transform.Find("SpawnPoint").transform.position, transform.Find("SpawnPoint").transform.rotation);
+        NavMeshAgent myAgent = moverNew.GetComponent<NavMeshAgent>();
+        moverNew.targetPosition = transform.Find("BannerPoint").transform.position;
+        moverNew.Move();
     }
 }

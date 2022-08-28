@@ -7,7 +7,7 @@ public class Worker : Mover
     // Start is called before the first frame update
     void Start()
     {
-        
+        canGatherResources = true;
     }
 
     // Update is called once per frame

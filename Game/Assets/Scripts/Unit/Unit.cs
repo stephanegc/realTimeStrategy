@@ -11,6 +11,7 @@ public class Unit : MonoBehaviour
     public bool canMove = false;
     public bool canCreateUnits = false;
     public bool canAttack = false;
+    public bool canGatherResources = false;
 
     void Start()
     {
