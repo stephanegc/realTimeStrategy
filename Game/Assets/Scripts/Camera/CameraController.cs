@@ -127,10 +127,10 @@ public class CameraController : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, clickable))
             {
+                Debug.Log("CLickable object hit by raycast !");
                 if (hit.collider.GetComponent<Unit>() != null)
                 {
                     Unit unit = hit.collider.GetComponent<Mover>();
-                    Debug.Log("Unit hit by raycast !");
                     if (Input.GetKey(KeyCode.LeftShift))
                     {
                         UnitSelections.Instance.ShiftClickSelect(unit);
@@ -155,7 +155,6 @@ public class CameraController : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                Debug.Log("Unit hit by raycast !");
                 foreach (var unit in UnitSelections.Instance.unitsSelected)
                 {
                     if (unit.GetComponent<Mover>() != null)
@@ -165,7 +164,19 @@ public class CameraController : MonoBehaviour
                         mover.Move();
                     }
                 }
-            }            
+            }
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, clickable))
+            {
+                if (hit.collider.GetComponent<Unit>() != null)
+                {
+                    var hitUnit = hit.collider.GetComponent<Unit>();
+                    foreach (var unit in UnitSelections.Instance.unitsSelected)
+                    {
+                        Unit unitTemp = unit.GetComponent<Unit>();
+                        unitTemp.targetUnit = hitUnit;
+                    }
+                }
+            }
         }
     }
 

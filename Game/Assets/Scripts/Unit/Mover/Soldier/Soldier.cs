@@ -8,12 +8,10 @@ public class Soldier : Mover
     protected override void Start()
     {
         base.Start();
-        maxHealth = 500;
+        maxHealth = 500f;
+        health = maxHealth;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  
 }

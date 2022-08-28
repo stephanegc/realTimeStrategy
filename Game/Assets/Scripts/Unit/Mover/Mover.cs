@@ -7,18 +7,26 @@ public class Mover : Unit
 {
     public NavMeshAgent myAgent;
     public Vector3 targetPosition;
-    private Transform targetUnit;
 
     void Awake()
     {
         canMove = true;
         canAttack = true;
+        attackPower = 10f;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        
     }
 
     public void Move()
     {
         myAgent.SetDestination(targetPosition);
     }
+
+    
 }
 
 // UnitMovement.cs

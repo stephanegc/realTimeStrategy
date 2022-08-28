@@ -12,12 +12,14 @@ public class Building : Unit
     {
         base.Start();
         canCreateUnits = true;
-        maxHealth = 1000;
+        maxHealth = 1000f;
+        health = maxHealth;
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         if (Input.GetKeyDown(KeyCode.B) && this.isSelected)
         {
             CreateMover(mover);

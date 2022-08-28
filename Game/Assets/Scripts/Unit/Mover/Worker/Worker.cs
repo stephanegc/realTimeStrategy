@@ -9,12 +9,10 @@ public class Worker : Mover
     {
         base.Start();
         canGatherResources = true;
-        maxHealth = 100;
+        maxHealth = 100f;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
+
 }
