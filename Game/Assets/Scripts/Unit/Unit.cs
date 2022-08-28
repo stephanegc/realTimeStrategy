@@ -35,6 +35,11 @@ public class Unit : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (health == 0)
+        {
+            Destroy(gameObject);
+            return;
+        }
         //Debug.Log("teeeeeest");
         if (targetUnit != null)
         {
@@ -42,7 +47,6 @@ public class Unit : MonoBehaviour
         }
         if (targetUnit != null && distanceToTargetUnit <= attackRange && attackCountDown <= 0)
         {
-            Debug.Log("TEEEEEEEEST");
             Attack(targetUnit);
         }
         if (attackCountDown <= 0)
@@ -52,9 +56,9 @@ public class Unit : MonoBehaviour
         attackCountDown -= Time.deltaTime;
     }
 
-    void Attack(Unit targetUnit)
+    protected virtual void Attack(Unit targetUnit)
     {
-        Debug.Log("Attacking: " + targetUnit);
+        Debug.Log(this + " ATTACKING " + targetUnit);
         targetUnit.health -= attackPower;
     }
 }
