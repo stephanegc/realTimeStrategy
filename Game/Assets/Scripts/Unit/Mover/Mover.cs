@@ -9,7 +9,7 @@ public class Mover : Unit
     public Vector3 targetPosition;
     private Transform targetUnit;
 
-    void Start()
+    void Awake()
     {
         canMove = true;
         canAttack = true;
@@ -17,7 +17,6 @@ public class Mover : Unit
 
     public void Move()
     {
-        Debug.Log("Moving unit to: " + targetPosition);
         myAgent.SetDestination(targetPosition);
     }
 }
