@@ -7,8 +7,7 @@ public class Building : Unit
 {
     public Mover mover;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         canCreateUnits = true;
         maxHealth = 1000;
@@ -17,8 +16,9 @@ public class Building : Unit
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B) && this.isSelected)
+        if (Input.GetKeyDown(KeyCode.B))
         {
+            Debug.Log("SELECTED ?: " + this.isSelected);
             CreateMover(mover);
         }
     }

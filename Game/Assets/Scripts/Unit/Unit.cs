@@ -13,20 +13,18 @@ public class Unit : MonoBehaviour
     public bool canAttack = false;
     public bool canGatherResources = false;
 
-    void Start()
+    protected virtual void Start()
     {
         //add this unit to the list
         UnitSelections.Instance.unitList.Add(this);
         health = maxHealth;
     }
 
-    void OnDestroy()
+    protected virtual void OnDestroy()
     {
         //remove it from the list when destroyerd
         UnitSelections.Instance.unitList.Remove(this);
     }
-
-    
 }
 
 
