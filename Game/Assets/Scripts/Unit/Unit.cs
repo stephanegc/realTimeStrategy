@@ -16,14 +16,14 @@ public class Unit : MonoBehaviour
     void Start()
     {
         //add this unit to the list
-        UnitSelections.Instance.unitList.Add(this.gameObject);
+        UnitSelections.Instance.unitList.Add(this);
         health = maxHealth;
     }
 
     void OnDestroy()
     {
         //remove it from the list when destroyerd
-        UnitSelections.Instance.unitList.Remove(this.gameObject);
+        UnitSelections.Instance.unitList.Remove(this);
     }
 
     

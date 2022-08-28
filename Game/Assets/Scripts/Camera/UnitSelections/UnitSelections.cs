@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class UnitSelections : MonoBehaviour
 {
-    public List<GameObject> unitList = new List<GameObject>();
-    public List<GameObject> unitsSelected = new List<GameObject>();
+    public List<Unit> unitList = new List<Unit>();
+    public List<Unit> unitsSelected = new List<Unit>();
 
     private static UnitSelections _instance;
     public static UnitSelections Instance { get { return _instance; } }
@@ -22,7 +22,8 @@ public class UnitSelections : MonoBehaviour
         }
     }
 
-    public void ClickSelect(GameObject unitToAdd)
+
+    public void ClickSelect(Unit unitToAdd)
     {
         DeselectAll();
         Debug.Log("Adding unit to the list");
@@ -30,7 +31,7 @@ public class UnitSelections : MonoBehaviour
         unitToAdd.transform.Find("SelectionHighlight").gameObject.SetActive(true);
     }
 
-    public void ShiftClickSelect(GameObject unitToAdd)
+    public void ShiftClickSelect(Unit unitToAdd)
     {
         if (!unitsSelected.Contains(unitToAdd))
         {
@@ -44,7 +45,7 @@ public class UnitSelections : MonoBehaviour
         }
     }
 
-    public void DragSelect(GameObject unitToAdd)
+    public void DragSelect(Unit unitToAdd)
     {
         if (!unitsSelected.Contains(unitToAdd))
         {
@@ -66,7 +67,7 @@ public class UnitSelections : MonoBehaviour
     }
 
     
-    public void Deselect(GameObject unitToDeselect)
+    public void Deselect(Unit unitToDeselect)
     {
 
     }
