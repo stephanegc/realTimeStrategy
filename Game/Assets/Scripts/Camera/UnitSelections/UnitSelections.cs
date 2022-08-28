@@ -27,9 +27,7 @@ public class UnitSelections : MonoBehaviour
         DeselectAll();
         Debug.Log("Adding unit to the list");
         unitsSelected.Add(unitToAdd);
-        //unitToAdd.transform.GetChild(0).gameObject.SetActive(true);
         unitToAdd.transform.Find("SelectionHighlight").gameObject.SetActive(true);
-        unitToAdd.GetComponent<UnitMovement>().enabled = true;
     }
 
     public void ShiftClickSelect(GameObject unitToAdd)
@@ -38,11 +36,9 @@ public class UnitSelections : MonoBehaviour
         {
             unitsSelected.Add(unitToAdd);
             unitToAdd.transform.Find("SelectionHighlight").gameObject.SetActive(true);
-            unitToAdd.GetComponent<UnitMovement>().enabled = true;
         }
         else
         {
-            unitToAdd.GetComponent<UnitMovement>().enabled = false;
             unitToAdd.transform.Find("SelectionHighlight").gameObject.SetActive(false);
             unitsSelected.Remove(unitToAdd);
         }
@@ -55,7 +51,6 @@ public class UnitSelections : MonoBehaviour
             Debug.Log("Adding selected unit via drag to unitList and setting graphics to active");
             unitsSelected.Add(unitToAdd);
             unitToAdd.transform.Find("SelectionHighlight").gameObject.SetActive(true);
-            unitToAdd.GetComponent<UnitMovement>().enabled = true;
         }
     }
 
@@ -65,7 +60,6 @@ public class UnitSelections : MonoBehaviour
         
         foreach (var unit in unitsSelected)
         {
-            unit.GetComponent<UnitMovement>().enabled = false;
             unit.transform.Find("SelectionHighlight").gameObject.SetActive(false);
         }
         unitsSelected.Clear();
