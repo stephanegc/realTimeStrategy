@@ -6,11 +6,20 @@ public class Resource : Unit
 {
 
     // Start is called before the first frame update
+    protected override void Start()
+    {
+        base.Start();
+        canGatherResources = true;
+        maxHealth = 100f;
+        health = maxHealth;
+        maxHealth = 5000f;
+        health = maxHealth;
+        isSelectable = false;
+    }
     void Awake()
     {
         // Keep here to not trigger Unit.Start() and list it in Units
-        maxHealth = 5000f;
-        health = maxHealth;
+        
     }
 
     // Update is called once per frame

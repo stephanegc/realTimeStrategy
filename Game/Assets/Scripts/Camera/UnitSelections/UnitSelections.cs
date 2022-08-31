@@ -65,6 +65,7 @@ public class UnitSelections : MonoBehaviour
         
         foreach (var unit in unitsSelected)
         {
+            Debug.Log("Removing : " + unit);
             unit.transform.Find("SelectionHighlight").gameObject.SetActive(false);
             unit.isSelected = false;
         }

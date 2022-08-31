@@ -26,8 +26,8 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         myCam = Camera.main;
-        startPosition = Vector2.zero;
-        endPosition = Vector2.zero;
+        startPosition = Input.mousePosition;
+        endPosition = Input.mousePosition;
         DrawVisual();
         DrawSelection();
     }
@@ -63,8 +63,8 @@ public class CameraController : MonoBehaviour
         {
             Debug.Log("Left mouse button released ! Adding selected units via drag");
             SelectUnits();
-            startPosition = Vector2.zero;
-            endPosition = Vector2.zero;
+            startPosition = Input.mousePosition;
+            endPosition = Input.mousePosition;
             DrawVisual();
         }
     }
@@ -127,10 +127,11 @@ public class CameraController : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, clickable))
             {
-                Debug.Log("CLickable object hit by raycast !");
-                if (hit.collider.GetComponent<Unit>() != null)
+                Debug.Log("Clickable object hit by raycast !");
+                Unit unit = hit.collider.GetComponent<Unit>();
+                if (unit != null && unit.isSelectable)
                 {
-                    Unit unit = hit.collider.GetComponent<Mover>();
+                    Mover mover = hit.collider.GetComponent<Mover>();
                     if (Input.GetKey(KeyCode.LeftShift))
                     {
                         UnitSelections.Instance.ShiftClickSelect(unit);
@@ -140,7 +141,6 @@ public class CameraController : MonoBehaviour
                         UnitSelections.Instance.ClickSelect(unit);
                     }
                 }
-                
             }
             else
             {
@@ -225,7 +225,8 @@ public class CameraController : MonoBehaviour
     {
         foreach (var unit in UnitSelections.Instance.unitList)
         {
-            if (selectionBox.Contains(myCam.WorldToScreenPoint(unit.transform.position)))
+            Debug.Log("Checking unit : " + unit);
+            if (selectionBox.Contains(myCam.WorldToScreenPoint(unit.transform.position)) && unit.isSelectable)
             {
                 Debug.Log("Sending the unit to the DragSelect");
                 UnitSelections.Instance.DragSelect(unit);

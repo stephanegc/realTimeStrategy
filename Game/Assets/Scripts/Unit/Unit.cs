@@ -7,6 +7,7 @@ public class Unit : MonoBehaviour
 {
     public float maxHealth;
     public float health;
+    public bool isSelectable = true;
     public bool isSelected = false;
     public bool canMove = false;
     public bool canCreateUnits = false;
@@ -25,6 +26,7 @@ public class Unit : MonoBehaviour
         //add this unit to the list
         UnitSelections.Instance.unitList.Add(this);
         health = maxHealth;
+        isSelectable = true;
     }
 
     protected virtual void OnDestroy()

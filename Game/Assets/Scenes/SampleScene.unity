@@ -579,6 +579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   health: 0
+  isSelectable: 0
   isSelected: 0
   canMove: 0
   canCreateUnits: 0
@@ -603,7 +604,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.7, y: 4, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &542462509
 GameObject:
@@ -733,6 +734,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   health: 0
+  isSelectable: 0
   isSelected: 0
   canMove: 0
   canCreateUnits: 0
@@ -746,6 +748,9 @@ MonoBehaviour:
   attackPower: 0
   myAgent: {fileID: 581125918}
   targetPosition: {x: 0, y: 0, z: 0}
+  resourceTotal: 0
+  resourceCap: 50
+  resourceBuilding: {fileID: 2140105304}
 --- !u!195 &581125918 stripped
 NavMeshAgent:
   m_CorrespondingSourceObject: {fileID: 5725985566528160688, guid: 2fb5f36835b01a945a0dc87295af20c6, type: 3}
@@ -762,7 +767,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 4, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &612722744
 GameObject:
@@ -1923,6 +1928,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8833286974644589110, guid: 6de7a5f9df64abd43a6e6c407e49b05f, type: 3}
   m_PrefabInstance: {fileID: 8833286974777618757}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2140105304 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8833286974644589106, guid: 6de7a5f9df64abd43a6e6c407e49b05f, type: 3}
+  m_PrefabInstance: {fileID: 8833286974777618757}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140105303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 903e72bc12cf10a42bf8513f5e12e7b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2140105307 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8833286974644589107, guid: 6de7a5f9df64abd43a6e6c407e49b05f, type: 3}
