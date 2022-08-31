@@ -29,6 +29,7 @@ public class Unit : MonoBehaviour
         health = maxHealth;
         isSelectable = true;
         animator = GetComponent<Animator>();
+        distanceToTargetUnit = Mathf.Infinity;
     }
 
     protected virtual void OnDestroy()

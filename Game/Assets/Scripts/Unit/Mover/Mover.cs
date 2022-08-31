@@ -8,6 +8,7 @@ public class Mover : Unit
     public NavMeshAgent myAgent;
     public Vector3 targetPosition;
     public float distanceToTargetPosition;
+    private float distanceToSetDestination;
     public bool isMoving = false;
 
     void Awake()
@@ -16,6 +17,7 @@ public class Mover : Unit
         canAttack = true;
         attackPower = 10f;
         targetPosition = transform.position;
+        myAgent.SetDestination(targetPosition);
     }
 
     protected override void Update()
@@ -27,42 +29,45 @@ public class Mover : Unit
 
         //Debug.Log("CURRENT STATE : " + asi);
 
-        if (distanceToTargetPosition <= 0.1 && isMoving)
-        {
-            SetIdle();
-        }
-        if (distanceToTargetPosition > 0.1) // need to be able to trigger this also when isMoving !!! Else can NOT change destination before the unit has finished moving !!!
+        if (HasDestinationChanged()) // need to be able to trigger this also when isMoving !!! Else can NOT change destination before the unit has finished moving !!!
         {
             Move();
+        } 
+
+        if ((distanceToTargetPosition <= 0.1 || distanceToTargetUnit <= 1.5) && isMoving)
+        {
+            SetIdle();
         }
     }
 
     public void Move()
     {
-        Debug.Log("Setting to RUN");
-        isMoving = true;
-        if (!GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Run"))
-        {
-            animator.SetTrigger("Run");
-        }
         myAgent.SetDestination(targetPosition);
+        isMoving = true;
+        animator.SetTrigger("Run");
     }
 
     public void SetIdle()
     {
+        Debug.Log("Setting to IDLE");
         isMoving = false;
         animator.SetTrigger("Idle");
     }
 
-    //public void SetToIdle()
-    //{
-    //    if (distanceToTargetPosition > 0.1 && animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-    //    {
-    //        return;
-    //    }
-    //    Debug.Log("Setting to IDLE");
-    //    animator.SetTrigger("Idle");
-    //}
+    public bool HasDestinationChanged()
+    {
+        var distance = Vector3.Distance(targetPosition, myAgent.destination);
+        if (distance < 1)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+        
+    }
+
 }
 
 // UnitMovement.cs
