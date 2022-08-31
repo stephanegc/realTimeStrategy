@@ -7,26 +7,62 @@ public class Mover : Unit
 {
     public NavMeshAgent myAgent;
     public Vector3 targetPosition;
+    public float distanceToTargetPosition;
+    public bool isMoving = false;
 
     void Awake()
     {
         canMove = true;
         canAttack = true;
         attackPower = 10f;
+        targetPosition = transform.position;
     }
 
     protected override void Update()
     {
         base.Update();
-        
+        distanceToTargetPosition = Vector3.Distance(targetPosition, transform.position);
+
+        AnimatorStateInfo asi = GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
+
+        //Debug.Log("CURRENT STATE : " + asi);
+
+        if (distanceToTargetPosition <= 0.1 && isMoving)
+        {
+            SetIdle();
+        }
+        if (distanceToTargetPosition > 0.1) // need to be able to trigger this also when isMoving !!! Else can NOT change destination before the unit has finished moving !!!
+        {
+            Move();
+        }
     }
 
     public void Move()
     {
+        Debug.Log("Setting to RUN");
+        isMoving = true;
+        if (!GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Run"))
+        {
+            animator.SetTrigger("Run");
+        }
         myAgent.SetDestination(targetPosition);
     }
 
-    
+    public void SetIdle()
+    {
+        isMoving = false;
+        animator.SetTrigger("Idle");
+    }
+
+    //public void SetToIdle()
+    //{
+    //    if (distanceToTargetPosition > 0.1 && animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+    //    {
+    //        return;
+    //    }
+    //    Debug.Log("Setting to IDLE");
+    //    animator.SetTrigger("Idle");
+    //}
 }
 
 // UnitMovement.cs

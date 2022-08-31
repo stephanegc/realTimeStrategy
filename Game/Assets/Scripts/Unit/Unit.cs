@@ -20,6 +20,7 @@ public class Unit : MonoBehaviour
     public float attackRange = 2f;
     public float attackCountDown = 0f;
     public float attackPower;
+    public Animator animator;
 
     protected virtual void Start()
     {
@@ -27,6 +28,7 @@ public class Unit : MonoBehaviour
         UnitSelections.Instance.unitList.Add(this);
         health = maxHealth;
         isSelectable = true;
+        animator = GetComponent<Animator>();
     }
 
     protected virtual void OnDestroy()
