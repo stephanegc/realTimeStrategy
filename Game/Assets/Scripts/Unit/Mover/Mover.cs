@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class Mover : Unit
 {
     public NavMeshAgent myAgent;
-    public Vector3 targetPosition;
     public float distanceToTargetPosition;
     private float distanceToSetDestination;
     public bool isMoving = false;
@@ -16,7 +15,6 @@ public class Mover : Unit
         canMove = true;
         canAttack = true;
         attackPower = 10f;
-        targetPosition = transform.position;
         myAgent.SetDestination(targetPosition);
     }
 
@@ -57,7 +55,7 @@ public class Mover : Unit
     public bool HasDestinationChanged()
     {
         var distance = Vector3.Distance(targetPosition, myAgent.destination);
-        if (distance < 1)
+        if (distance < 0.1)
         {
             return false;
         }

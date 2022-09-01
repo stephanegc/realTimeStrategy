@@ -173,6 +173,11 @@ public class CameraController : MonoBehaviour
                     {
                         Unit unitTemp = unit.GetComponent<Unit>();
                         unitTemp.targetUnit = hitUnit;
+                        if (unit.GetComponent<Mover>() != null)
+                        {
+                            Mover mover = unit.GetComponent<Mover>();
+                            mover.targetPosition = hitUnit.transform.position;
+                        }
                     }
                 }
             }
