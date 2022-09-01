@@ -9,8 +9,6 @@ public class Resource : Unit
     protected override void Start()
     {
         base.Start();
-        canGatherResources = true;
-        maxHealth = 100f;
         health = maxHealth;
         maxHealth = 5000f;
         health = maxHealth;

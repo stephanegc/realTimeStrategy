@@ -591,8 +591,11 @@ MonoBehaviour:
   attackRange: 2
   attackCountDown: 0
   attackPower: 0
-  myAgent: {fileID: 392697270}
+  animator: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
+  myAgent: {fileID: 392697270}
+  distanceToTargetPosition: 0
+  isMoving: 0
 --- !u!65 &392697278
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -750,8 +753,11 @@ MonoBehaviour:
   attackRange: 2
   attackCountDown: 0
   attackPower: 0
-  myAgent: {fileID: 581125918}
+  animator: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
+  myAgent: {fileID: 581125918}
+  distanceToTargetPosition: 0
+  isMoving: 0
   resourceTotal: 0
   resourceCap: 50
   resourceBuilding: {fileID: 2140105304}
@@ -977,7 +983,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 405966, guid: c7bcf19bbfa57ed4ea9147dff66d5542, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -37.75
       objectReference: {fileID: 0}
     - target: {fileID: 405966, guid: c7bcf19bbfa57ed4ea9147dff66d5542, type: 3}
       propertyPath: m_LocalPosition.y
@@ -985,7 +991,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 405966, guid: c7bcf19bbfa57ed4ea9147dff66d5542, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -25
+      value: -10.25
       objectReference: {fileID: 0}
     - target: {fileID: 405966, guid: c7bcf19bbfa57ed4ea9147dff66d5542, type: 3}
       propertyPath: m_LocalRotation.w
