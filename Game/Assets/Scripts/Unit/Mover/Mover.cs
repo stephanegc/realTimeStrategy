@@ -32,7 +32,7 @@ public class Mover : Unit
             Move();
         } 
 
-        if ((distanceToTargetPosition <= 0.1 || distanceToTargetUnit <= 1.5) && isMoving)
+        if ((distanceToTargetPosition <= 0.1 || distanceToTargetUnit <= 1.5) && isMoving && (targetUnit == null || targetPosition == targetUnit.transform.position)) 
         {
             SetIdle();
         }
