@@ -13,6 +13,7 @@ public class Unit : MonoBehaviour
     public bool canCreateUnits = false;
     public bool canAttack = false;
     public bool canGatherResources = false;
+    public bool canAttackNonResourcesUnits = false;
 
     public Unit targetUnit;
     public float distanceToTargetUnit;
@@ -55,7 +56,7 @@ public class Unit : MonoBehaviour
             distanceToTargetUnit = Vector3.Distance(transform.position, targetUnit.transform.position);
             distanceToTargetUnitPosition = Vector3.Distance(targetPosition, targetUnit.transform.position);
         }
-        if (targetUnit != null && distanceToTargetUnit <= attackRange && attackCountDown <= 0 && distanceToTargetUnitPosition <= 1.5)
+        if (targetUnit != null && distanceToTargetUnit <= attackRange && attackCountDown <= 0 && distanceToTargetUnitPosition <= 1.5 && CanAttackTargetUnit())
         {
             Attack(targetUnit);
         }
@@ -64,6 +65,16 @@ public class Unit : MonoBehaviour
             attackCountDown = attackSpeed;
         }
         attackCountDown -= Time.deltaTime;
+    }
+
+    private bool CanAttackTargetUnit()
+    {
+        if (targetUnit == null)
+        {
+            return false;
+        }
+        var check = (targetUnit.GetComponent<Resource>() != null && canGatherResources) || (targetUnit.GetComponent<Unit>() != null && targetUnit.GetComponent<Resource>() == null && canAttackNonResourcesUnits);
+        return check;
     }
 
     protected virtual void Attack(Unit targetUnit)

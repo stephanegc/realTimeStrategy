@@ -11,6 +11,7 @@ public class Soldier : Mover
         maxHealth = 500f;
         health = maxHealth;
         attackSpeed = 2.5f;
+        canAttackNonResourcesUnits = true;
 }
 
     // Update is called once per frame
