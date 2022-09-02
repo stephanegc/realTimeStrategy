@@ -47,6 +47,8 @@ public class Unit : MonoBehaviour
     {
         if (health == 0)
         {
+            Debug.Log("Setting to DIE");
+            animator.SetTrigger("Die");
             Destroy(gameObject);
             return;
         }
