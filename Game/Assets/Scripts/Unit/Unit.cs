@@ -16,6 +16,7 @@ public class Unit : MonoBehaviour
 
     public Unit targetUnit;
     public float distanceToTargetUnit;
+    public float distanceToTargetUnitPosition;
     public float attackSpeed = 2f;
     public float attackRange = 2f;
     public float attackCountDown = 0f;
@@ -52,8 +53,9 @@ public class Unit : MonoBehaviour
         if (targetUnit != null)
         {
             distanceToTargetUnit = Vector3.Distance(transform.position, targetUnit.transform.position);
+            distanceToTargetUnitPosition = Vector3.Distance(targetPosition, targetUnit.transform.position);
         }
-        if (targetUnit != null && distanceToTargetUnit <= attackRange && attackCountDown <= 0 && targetPosition == targetUnit.transform.position)
+        if (targetUnit != null && distanceToTargetUnit <= attackRange && attackCountDown <= 0 && distanceToTargetUnitPosition <= 1.5)
         {
             Attack(targetUnit);
         }

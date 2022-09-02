@@ -16,6 +16,9 @@ public class Mover : Unit
         canAttack = true;
         attackPower = 10f;
         myAgent.SetDestination(targetPosition);
+        myAgent.acceleration = 100f;
+        myAgent.speed = 8f;
+        myAgent.angularSpeed = 10000f;
     }
 
     protected override void Update()

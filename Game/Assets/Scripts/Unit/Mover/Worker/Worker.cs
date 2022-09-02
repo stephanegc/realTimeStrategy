@@ -15,9 +15,6 @@ public class Worker : Mover
         canGatherResources = true;
         maxHealth = 100f;
         health = maxHealth;
-        myAgent.acceleration = 100f;
-        myAgent.speed = 8f;
-        myAgent.angularSpeed = 10000f;
     }
 
     // Update is called once per frame
@@ -29,6 +26,7 @@ public class Worker : Mover
         {
             if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Mine"))
             {
+                Debug.Log("Setting to MINE");
                 animator.SetTrigger("Mine");
             }
             resourceTotal += attackPower;
