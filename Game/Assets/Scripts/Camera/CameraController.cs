@@ -161,6 +161,7 @@ public class CameraController : MonoBehaviour
                     {
                         Mover mover = unit.GetComponent<Mover>();
                         mover.targetPosition = hit.point;
+                        mover.aimingForTargetUnit = false;
                     }
                 }
             }
@@ -177,6 +178,7 @@ public class CameraController : MonoBehaviour
                         {
                             Mover mover = unit.GetComponent<Mover>();
                             mover.targetPosition = hitUnit.transform.position;
+                            mover.aimingForTargetUnit = true;
                         }
                     }
                 }

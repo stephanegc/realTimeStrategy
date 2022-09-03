@@ -8,6 +8,7 @@ public class Mover : Unit
     public NavMeshAgent myAgent;
     public float distanceToTargetPosition;
     private float distanceToSetDestination;
+    public bool aimingForTargetUnit;
     public bool isMoving = false;
 
     void Awake()
@@ -19,6 +20,7 @@ public class Mover : Unit
         myAgent.acceleration = 100f;
         myAgent.speed = 8f;
         myAgent.angularSpeed = 10000f;
+        aimingForTargetUnit = false;
     }
 
     protected override void Update()
@@ -28,7 +30,12 @@ public class Mover : Unit
 
         AnimatorStateInfo asi = GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
 
-        //Debug.Log("CURRENT STATE : " + asi);
+        // This make it move to it but then need to find a way to make it stop moving when very close, and override its position when we right click on the ground (without removing target unit)
+        if (targetUnit != null && aimingForTargetUnit)
+        {
+            targetPosition = targetUnit.transform.position;
+        }
+
 
         if (HasDestinationChanged()) // need to be able to trigger this also when isMoving !!! Else can NOT change destination before the unit has finished moving !!!
         {
@@ -51,7 +58,10 @@ public class Mover : Unit
     {
         myAgent.SetDestination(targetPosition);
         isMoving = true;
-        animator.SetTrigger("Run");
+        if(!animator.GetCurrentAnimatorStateInfo(0).IsName("Run"))
+        {
+            animator.SetTrigger("Run");
+        }
     }
 
     public void SetIdle()
