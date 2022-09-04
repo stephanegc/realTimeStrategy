@@ -19,6 +19,7 @@ public class Worker : Mover
         isGatheringResources = false;
         maxHealth = 100f;
         health = maxHealth;
+        resourceCost = 50f;
     }
 
     // Update is called once per frame

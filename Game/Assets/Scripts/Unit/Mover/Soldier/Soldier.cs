@@ -12,7 +12,8 @@ public class Soldier : Mover
         health = maxHealth;
         attackSpeed = 2.5f;
         canAttackNonResourcesUnits = true;
-}
+        resourceCost = 100f;
+    }
 
     // Update is called once per frame
     protected override void Attack(Unit targetUnit)

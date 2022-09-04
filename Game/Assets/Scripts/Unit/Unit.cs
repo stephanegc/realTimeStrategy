@@ -24,7 +24,9 @@ public class Unit : MonoBehaviour
     public float attackPower;
     public Animator animator;
 
-    
+    public float resourceCost;
+
+
 
     protected virtual void Start()
     {

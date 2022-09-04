@@ -10,6 +10,7 @@ public class PlayerStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        resourceTotal = 1000;
         // ensure that we destroy this instance if it already exists and isn't this one
         if (_instance != null && _instance != this)
         {
