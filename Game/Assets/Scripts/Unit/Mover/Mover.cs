@@ -43,7 +43,7 @@ public class Mover : Unit
         } 
 
         // We want to setIdle the unit only if it's moving AND either it's close to its targetPosition OR it's close to its targetUnit AND the unit is still aiming to go to the position of its targetUnit (else we want it to keep moving and not stop on its way !!!)
-        if ( isMoving && (distanceToTargetPosition <= 0.1 || (distanceToTargetUnit <= 1.5 && targetPosition == targetUnit.transform.position)) )
+        if ( isMoving && (distanceToTargetPosition <= 0.5 || (distanceToTargetUnit <= 1.5 && targetPosition == targetUnit.transform.position)) )
         {
             SetIdle();
         }

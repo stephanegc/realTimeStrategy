@@ -25,6 +25,14 @@ public class Worker : Mover
     {
         base.Update();
         distanceToResourceBuilding = Vector3.Distance(transform.position, resourceBuilding.transform.position);
+        if (targetUnit != null)
+        {
+            isGatheringResources = true;
+        }
+        else
+        {
+            isGatheringResources = false;
+        }
         if (distanceToResourceBuilding <= 1)
         {
             PlayerStats.Instance.resourceTotal += resourceTotal;
@@ -39,7 +47,6 @@ public class Worker : Mover
     protected override void Attack(Unit targetUnit)
     {
         base.Attack(targetUnit);
-        isGatheringResources = true;
         if (resourceTotal < resourceCap)
         {
             if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Mine"))

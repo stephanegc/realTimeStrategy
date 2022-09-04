@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 2703965801282066335}
   - component: {fileID: 2631895418990198231}
   - component: {fileID: 95000012989530907}
-  m_Layer: 0
+  - component: {fileID: 1762109821}
+  m_Layer: 8
   m_Name: MainResource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,4 +118,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e32c6a655d4af54d9a5275888c169da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  total: 1000
+  maxHealth: 0
+  health: 0
+  isSelectable: 1
+  isSelected: 0
+  canMove: 0
+  canCreateUnits: 0
+  canAttack: 0
+  canGatherResources: 0
+  canAttackNonResourcesUnits: 0
+  targetUnit: {fileID: 0}
+  distanceToTargetUnit: 0
+  distanceToTargetUnitPosition: 0
+  attackSpeed: 2
+  attackRange: 2
+  attackCountDown: 0
+  attackPower: 0
+  animator: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
+--- !u!65 &1762109821
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2725893229738836691}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.05145663, y: 0.05184012, z: 0.037308287}
+  m_Center: {x: -0.0055656256, y: 0.02346941, z: 0.013663684}

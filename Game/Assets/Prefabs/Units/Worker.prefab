@@ -1523,7 +1523,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6818962738146497809}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -30.274029, y: -0.00000047683716, z: -22.74787}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1672,10 +1672,13 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   myAgent: {fileID: 5370571547249954291}
   distanceToTargetPosition: 0
+  aimingForTargetUnit: 0
   isMoving: 0
   resourceTotal: 0
   resourceCap: 50
   resourceBuilding: {fileID: 0}
+  isGatheringResources: 0
+  distanceToResourceBuilding: 0
 --- !u!1 &6818962738180586239
 GameObject:
   m_ObjectHideFlags: 0
