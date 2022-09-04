@@ -31,5 +31,10 @@ public class Building : Unit
         Debug.Log("Creating unit at spawnPoint!");
         Mover moverNew = (Mover)Instantiate(mover, transform.Find("SpawnPoint").transform.position, transform.Find("SpawnPoint").transform.rotation);
         moverNew.targetPosition = transform.Find("BannerPoint").transform.position;
+        if (moverNew.GetComponent<Worker>() != null)
+        {
+            Worker worker = moverNew.GetComponent<Worker>();
+            worker.resourceBuilding = this;
+        }
     }
 }
