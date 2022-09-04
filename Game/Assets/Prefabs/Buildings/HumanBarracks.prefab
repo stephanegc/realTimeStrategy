@@ -279,8 +279,8 @@ MonoBehaviour:
   attackCountDown: 0
   attackPower: 0
   animator: {fileID: 0}
-  targetPosition: {x: 0, y: 0, z: 0}
-  mover: {fileID: 0}
+  mover: {fileID: 2935054562975354538, guid: f11f3c566049a5149be72666225c1c49, type: 3}
+  resourceCost: 200
 --- !u!65 &2132951169
 BoxCollider:
   m_ObjectHideFlags: 0

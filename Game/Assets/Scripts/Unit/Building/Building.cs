@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class Building : Unit
 {
     public Mover mover;
+    public float resourceCost;
 
     // Start is called before the first frame update
     protected override void Start()

@@ -1679,6 +1679,7 @@ MonoBehaviour:
   resourceBuilding: {fileID: 0}
   isGatheringResources: 0
   distanceToResourceBuilding: 0
+  building: {fileID: 3913619372267588563, guid: 2c483e91e6db11c458ca5620de2f0186, type: 3}
 --- !u!1 &6818962738180586239
 GameObject:
   m_ObjectHideFlags: 0

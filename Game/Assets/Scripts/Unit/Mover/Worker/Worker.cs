@@ -9,6 +9,7 @@ public class Worker : Mover
     public Building resourceBuilding;
     public bool isGatheringResources;
     public float distanceToResourceBuilding;
+    public Building building;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -42,6 +43,10 @@ public class Worker : Mover
         {
             targetPosition = targetUnit.transform.position;
         }
+        if (Input.GetKeyDown(KeyCode.B) && this.isSelected && PlayerStats.Instance.resourceTotal >= building.resourceCost)
+        {
+            Build(building);
+        }
     }
 
     protected override void Attack(Unit targetUnit)
@@ -64,4 +69,9 @@ public class Worker : Mover
         
     }
 
+    private void Build(Building building)
+    {
+        Building buildingNew = (Building)Instantiate(building, transform.position, building.transform.rotation);
+        PlayerStats.Instance.resourceTotal -= building.resourceCost;
+    }
 }
