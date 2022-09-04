@@ -10,17 +10,23 @@ public class Mover : Unit
     private float distanceToSetDestination;
     public bool aimingForTargetUnit;
     public bool isMoving = false;
+    public Vector3 targetPosition;
 
     void Awake()
     {
         canMove = true;
         canAttack = true;
         attackPower = 10f;
-        myAgent.SetDestination(targetPosition);
         myAgent.acceleration = 100f;
         myAgent.speed = 8f;
         myAgent.angularSpeed = 10000f;
         aimingForTargetUnit = false;
+        if (targetPosition == null)
+        {
+            targetPosition = transform.position;
+            myAgent.SetDestination(targetPosition);
+            Debug.Log("Setting targetPosition to : " + targetPosition);
+        }
     }
 
     protected override void Update()

@@ -30,8 +30,6 @@ public class Building : Unit
     {
         Debug.Log("Creating unit at spawnPoint!");
         Mover moverNew = (Mover)Instantiate(mover, transform.Find("SpawnPoint").transform.position, transform.Find("SpawnPoint").transform.rotation);
-        NavMeshAgent myAgent = moverNew.GetComponent<NavMeshAgent>();
         moverNew.targetPosition = transform.Find("BannerPoint").transform.position;
-        moverNew.Move();
     }
 }

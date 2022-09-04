@@ -24,7 +24,7 @@ public class Unit : MonoBehaviour
     public float attackPower;
     public Animator animator;
 
-    public Vector3 targetPosition;
+    
 
     protected virtual void Start()
     {
@@ -34,7 +34,6 @@ public class Unit : MonoBehaviour
         isSelectable = true;
         animator = GetComponent<Animator>();
         distanceToTargetUnit = Mathf.Infinity;
-        targetPosition = transform.position;
     }
 
     protected virtual void OnDestroy()
@@ -56,9 +55,9 @@ public class Unit : MonoBehaviour
         if (targetUnit != null)
         {
             distanceToTargetUnit = Vector3.Distance(transform.position, targetUnit.transform.position);
-            distanceToTargetUnitPosition = Vector3.Distance(targetPosition, targetUnit.transform.position);
+            //distanceToTargetUnitPosition = Vector3.Distance(targetPosition, targetUnit.transform.position);  && distanceToTargetUnitPosition <= 1.5
         }
-        if (targetUnit != null && distanceToTargetUnit <= attackRange && attackCountDown <= 0 && distanceToTargetUnitPosition <= 1.5 && CanAttackTargetUnit())
+        if (targetUnit != null && distanceToTargetUnit <= attackRange && attackCountDown <= 0 && CanAttackTargetUnit())
         {
             Attack(targetUnit);
         }
