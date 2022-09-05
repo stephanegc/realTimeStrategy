@@ -53,7 +53,7 @@ public class Worker : Mover
         }
         if (Input.GetKeyDown(KeyCode.B) && this.isSelected && PlayerStats.Instance.resourceTotal >= building.resourceCost)
         {
-            Build(building);
+            StartCoroutine(Build(building));
         }
     }
 
@@ -77,8 +77,9 @@ public class Worker : Mover
         
     }
 
-    private void Build(Building building)
+    IEnumerator Build(Building building)
     {
+        yield return new WaitForSeconds(5f);
         Building buildingNew = (Building)Instantiate(building, transform.position, building.transform.rotation);
         PlayerStats.Instance.resourceTotal -= buildingNew.resourceCost;
     }

@@ -23,12 +23,13 @@ public class Building : Unit
         base.Update();
         if (Input.GetKeyDown(KeyCode.B) && this.isSelected)
         {
-            CreateMover(mover);
+            StartCoroutine(CreateMover(mover));
         }
     }
 
-    void CreateMover(Mover mover)
+    IEnumerator CreateMover(Mover mover)
     {
+        yield return new WaitForSeconds(5f);
         Debug.Log("Creating unit at spawnPoint!");
         Mover moverNew = (Mover)Instantiate(mover, transform.Find("SpawnPoint").transform.position, transform.Find("SpawnPoint").transform.rotation);
         moverNew.targetPosition = transform.Find("BannerPoint").transform.position;
