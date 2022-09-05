@@ -6,6 +6,7 @@ public class Worker : Mover
 {
     public float resourceTotal = 0f;
     public float resourceCap = 50f;
+    public GameObject workerBuilding;
     public Building resourceBuilding;
     public bool isGatheringResources;
     public float distanceToResourceBuilding;
@@ -80,9 +81,12 @@ public class Worker : Mover
     IEnumerator Build(Building building)
     {
         Debug.Log("Setting to BUILD");
+        GameObject workerBuildingNew = (GameObject)Instantiate(workerBuilding, transform.position, transform.rotation);
         animator.SetTrigger("Build");
         yield return new WaitForSeconds(5f);
+        Destroy(workerBuildingNew);
         Building buildingNew = (Building)Instantiate(building, transform.position, building.transform.rotation);
         PlayerStats.Instance.resourceTotal -= buildingNew.resourceCost;
+        animator.SetTrigger("Idle");
     }
 }

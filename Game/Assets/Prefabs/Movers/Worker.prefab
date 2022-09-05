@@ -1669,6 +1669,7 @@ MonoBehaviour:
   attackCountDown: 0
   attackPower: 0
   animator: {fileID: 0}
+  resourceCost: 0
   myAgent: {fileID: 5370571547249954291}
   distanceToTargetPosition: 0
   aimingForTargetUnit: 0
@@ -1676,6 +1677,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   resourceTotal: 0
   resourceCap: 50
+  workerBuilding: {fileID: 8725133021254122922, guid: b1e1b107f96f6d44b8057c1184cea1e7, type: 3}
   resourceBuilding: {fileID: 0}
   isGatheringResources: 0
   distanceToResourceBuilding: 0
