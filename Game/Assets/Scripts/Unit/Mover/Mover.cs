@@ -12,7 +12,7 @@ public class Mover : Unit
     public bool isMoving = false;
     public Vector3 targetPosition;
 
-    void Awake()
+    protected virtual void Awake()
     {
         canMove = true;
         canAttack = true;

@@ -11,16 +11,23 @@ public class Worker : Mover
     public float distanceToResourceBuilding;
     public Building building;
 
-    // Start is called before the first frame update
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
+        resourceCost = 50f;
         canGatherResources = true;
         isGatheringResources = false;
         maxHealth = 100f;
         health = maxHealth;
-        resourceCost = 50f;
     }
+
+    // Start is called before the first frame update
+    //protected override void Start()
+    //{
+    //    base.Start();
+        
+        
+    //}
 
     // Update is called once per frame
     protected override void Update()
@@ -73,6 +80,6 @@ public class Worker : Mover
     private void Build(Building building)
     {
         Building buildingNew = (Building)Instantiate(building, transform.position, building.transform.rotation);
-        PlayerStats.Instance.resourceTotal -= building.resourceCost;
+        PlayerStats.Instance.resourceTotal -= buildingNew.resourceCost;
     }
 }

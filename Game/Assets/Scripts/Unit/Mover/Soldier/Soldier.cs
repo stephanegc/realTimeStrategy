@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class Soldier : Mover
 {
-    // Start is called before the first frame update
-    protected override void Start()
+
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         maxHealth = 500f;
         health = maxHealth;
         attackSpeed = 2.5f;
         canAttackNonResourcesUnits = true;
         resourceCost = 100f;
     }
+    // Start is called before the first frame update
+    //protected override void Start()
+    //{
+    //    base.Start();
+       
+    //}
 
     // Update is called once per frame
     protected override void Attack(Unit targetUnit)

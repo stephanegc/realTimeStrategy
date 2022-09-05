@@ -30,7 +30,6 @@ public class Building : Unit
     void CreateMover(Mover mover)
     {
         Debug.Log("Creating unit at spawnPoint!");
-        Debug.Log("UNIT CLASS : " + mover.GetType());
         Mover moverNew = (Mover)Instantiate(mover, transform.Find("SpawnPoint").transform.position, transform.Find("SpawnPoint").transform.rotation);
         moverNew.targetPosition = transform.Find("BannerPoint").transform.position;
         if (moverNew.GetComponent<Worker>() != null)
@@ -38,6 +37,6 @@ public class Building : Unit
             Worker worker = moverNew.GetComponent<Worker>();
             worker.resourceBuilding = this;
         }
-        PlayerStats.Instance.resourceTotal -= mover.resourceCost;
+        PlayerStats.Instance.resourceTotal -= moverNew.resourceCost;
     }
 }
