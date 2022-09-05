@@ -79,6 +79,8 @@ public class Worker : Mover
 
     IEnumerator Build(Building building)
     {
+        Debug.Log("Setting to BUILD");
+        animator.SetTrigger("Build");
         yield return new WaitForSeconds(5f);
         Building buildingNew = (Building)Instantiate(building, transform.position, building.transform.rotation);
         PlayerStats.Instance.resourceTotal -= buildingNew.resourceCost;
