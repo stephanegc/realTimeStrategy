@@ -29,7 +29,7 @@ public class Building : Unit
 
     IEnumerator CreateMover(Mover mover)
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         Debug.Log("Creating unit at spawnPoint!");
         Mover moverNew = (Mover)Instantiate(mover, transform.Find("SpawnPoint").transform.position, transform.Find("SpawnPoint").transform.rotation);
         moverNew.targetPosition = transform.Find("BannerPoint").transform.position;

@@ -41,18 +41,23 @@ public class Mover : Unit
         {
             targetPosition = targetUnit.transform.position;
         }
-
+        // We want to setIdle the unit only if it's moving AND either it's close to its targetPosition OR it's close to its targetUnit AND the unit is still aiming to go to the position of its targetUnit (else we want it to keep moving and not stop on its way !!!)
+        if ( isMoving && (distanceToTargetPosition <= 0.7 || (distanceToTargetUnit <= 1.5 && targetPosition == targetUnit.transform.position)) )
+        {
+            SetIdle();
+        }
 
         if (HasDestinationChanged()) // need to be able to trigger this also when isMoving !!! Else can NOT change destination before the unit has finished moving !!!
         {
             Move();
-        } 
-
-        // We want to setIdle the unit only if it's moving AND either it's close to its targetPosition OR it's close to its targetUnit AND the unit is still aiming to go to the position of its targetUnit (else we want it to keep moving and not stop on its way !!!)
-        if ( isMoving && (distanceToTargetPosition <= 0.5 || (distanceToTargetUnit <= 1.5 && targetPosition == targetUnit.transform.position)) )
-        {
-            SetIdle();
         }
+        //myAgent.velocity == Vector3.zero;
+        //)
+
+        //if (Mathf.Approximately(myAgent.velocity.x, 0) && Mathf.Approximately(myAgent.velocity.y, 0) && Mathf.Approximately(myAgent.velocity.z, 0))
+        //{
+        //    SetIdle();
+        //}
 
         //if (isMoving && ( (distanceToTargetPosition <= 0.1 || distanceToTargetUnit <= 1.5) || (targetUnit == null || targetPosition == targetUnit.transform.position) )) 
         //{
