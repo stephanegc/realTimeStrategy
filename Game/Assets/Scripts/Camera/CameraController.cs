@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class CameraController : MonoBehaviour
 {
@@ -248,14 +249,34 @@ public class CameraController : MonoBehaviour
 
     private List<Vector3> GetPositionList(Vector3 hitPosition, float distance, int positionCount)
     {
+        // Example odd with 1 unit : 0
+        // Example odd with 3 units: -1 0 +1
+        // Example odd with 5 units: -2 -1 0 +1 +2
+        // Example even with 2 units : -0.5 +0.5
+        // Example even with 4 units : -1.5 -0.5 +0.5 +1.5
         List<Vector3> positionList = new List<Vector3>();
+        var isEven = (positionCount % 2) == 0;
+        int startIndex;
+        float modifier;
+        if (isEven)
+        {
+            startIndex = positionCount / 2 * -1;  // cannot make it float ! ...
+        }
+        else
+        {
+            startIndex = (positionCount - 1) / 2 * -1;
+        }
+        IEnumerable<int> positionIndexes = Enumerable.Range(startIndex, positionCount);
+
         for (int i = 0; i < positionCount; i++)
         {
-            //float angle = i * (360f / positionCount);
-            //Vector3 dir = Quaternion.Euler(0, 0, angle) * new Vector3(1, 0);
-            //Vector3 position = hitPosition + dir * distance;
             Vector3 position = hitPosition;
-            position.x += distance * i; // makes it + 0 for first unit (i.e the 1st unit wil always be located at hit.point)
+            modifier = (float)positionIndexes.ElementAt(i);
+            if (isEven)
+            {
+                modifier += 0.5f; // ... so we make it float after the fact !
+            }            
+            position.x += distance * modifier;
             positionList.Add(position);
         }
         return positionList;
