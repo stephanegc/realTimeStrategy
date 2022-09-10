@@ -157,7 +157,7 @@ public class CameraController : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                List<Vector3> targetPositionList = GetPositionList(hit.point, 2f, UnitSelections.Instance.unitsSelected.Count);
+                List<Vector3> targetPositionList = GetPositionList(hit.point, 2f, UnitSelections.Instance.unitsSelected);
                 int targetPositionListIndex = 0;
                 Debug.Log("targetPositionList " + targetPositionList.Count);
                 foreach (var unit in UnitSelections.Instance.unitsSelected)
@@ -247,11 +247,12 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    private List<Vector3> GetPositionList(Vector3 hitPosition, float distance, int positionCount)
+    private List<Vector3> GetPositionList(Vector3 hitPosition, float distance, List<Unit> units)
     {
         // Aim is to keep center relative to mouse both when odd (middle unit at center) and even (one unit on at half distance of center on each side)
         // Example ODD (1 unit : 0); (3 units: -1 0 +1); (5 units: -2 -1 0 +1 +2) %%% EVEN (2 units : -0.5 +0.5); (4 units : -1.5 -0.5 +0.5 +1.5)
         List<Vector3> positionList = new List<Vector3>();
+        int positionCount = units.Count;
         var isEven = (positionCount % 2) == 0;
         int startIndex;
         float modifier;
