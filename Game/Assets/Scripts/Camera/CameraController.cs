@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class CameraController : MonoBehaviour
 {
@@ -155,13 +156,18 @@ public class CameraController : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
+                List<Vector3> targetPositionList = GetPositionList(hit.point, 2f, UnitSelections.Instance.unitsSelected.Count);
+                int targetPositionListIndex = 0;
+                Debug.Log("targetPositionList " + targetPositionList.Count);
                 foreach (var unit in UnitSelections.Instance.unitsSelected)
                 {
                     if (unit.GetComponent<Mover>() != null)
                     {
                         Mover mover = unit.GetComponent<Mover>();
-                        mover.targetPosition = hit.point;
+                        mover.targetPosition = targetPositionList[targetPositionListIndex];
                         mover.aimingForTargetUnit = false;
+                        targetPositionListIndex += 1;
+                        Debug.Log(mover.targetPosition);
                     }
                 }
             }
@@ -238,5 +244,20 @@ public class CameraController : MonoBehaviour
                 UnitSelections.Instance.DragSelect(unit);
             }
         }
+    }
+
+    private List<Vector3> GetPositionList(Vector3 hitPosition, float distance, int positionCount)
+    {
+        List<Vector3> positionList = new List<Vector3>();
+        for (int i = 0; i < positionCount; i++)
+        {
+            //float angle = i * (360f / positionCount);
+            //Vector3 dir = Quaternion.Euler(0, 0, angle) * new Vector3(1, 0);
+            //Vector3 position = hitPosition + dir * distance;
+            Vector3 position = hitPosition;
+            position.x += distance * i; // makes it + 0 for first unit (i.e the 1st unit wil always be located at hit.point)
+            positionList.Add(position);
+        }
+        return positionList;
     }
 }
