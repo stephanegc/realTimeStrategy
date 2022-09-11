@@ -157,7 +157,7 @@ public class CameraController : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                List<Vector3> targetPositionList = GetPositionList(hit.point, 2f, UnitSelections.Instance.unitsSelected);
+                List<Vector3> targetPositionList = GetPositionList(hit.point, 3f, UnitSelections.Instance.unitsSelected);
                 int targetPositionListIndex = 0;
                 Debug.Log("targetPositionList " + targetPositionList.Count);
                 foreach (var unit in UnitSelections.Instance.unitsSelected)
@@ -256,6 +256,13 @@ public class CameraController : MonoBehaviour
         var isEven = (positionCount % 2) == 0;
         int startIndex;
         float modifier;
+        //float angle = Vector3.SignedAngle(units[0].transform.position, hitPosition, ); // angle needs to be computed only once for now
+
+        var toHitPosition = hitPosition - units[0].transform.position;
+        var toXaxis = Vector3.left - units[0].transform.position;
+        var angle = Vector3.Angle(toHitPosition, toXaxis);
+        Debug.Log("!!! ANGLE !!! : " + angle);
+
         if (isEven)
         {
             startIndex = positionCount / 2 * -1;  // cannot make it float ! ...
@@ -273,9 +280,16 @@ public class CameraController : MonoBehaviour
             if (isEven)
             {
                 modifier += 0.5f; // ... so we make it float after the fact !
-            }            
-            position.x += distance * modifier;
-            positionList.Add(position);
+            }
+            //position.x += distance * modifier; // this is always making a line on the X axis, but we want the axis to be rotated according to the angle
+
+            // How to make it rotate ?
+            var x = Mathf.Cos(angle) * distance * modifier + hitPosition.x;
+            var y = hitPosition.y;
+            var z = Mathf.Sin(angle) * distance * modifier + hitPosition.z;
+            var pos = new Vector3(x,y,z);
+
+            positionList.Add(pos);
         }
         return positionList;
     }
