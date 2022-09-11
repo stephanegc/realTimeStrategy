@@ -256,38 +256,31 @@ public class CameraController : MonoBehaviour
         var isEven = (positionCount % 2) == 0;
         int startIndex;
         float modifier;
-        //float angle = Vector3.SignedAngle(units[0].transform.position, hitPosition, ); // angle needs to be computed only once for now
-
-        var toHitPosition = hitPosition - units[0].transform.position;
-        var toXaxis = Vector3.left - units[0].transform.position;
-        var angle = Vector3.Angle(toHitPosition, toXaxis);
-        Debug.Log("!!! ANGLE !!! : " + angle);
-
+        Vector3 centerPosition;
+ 
         if (isEven)
         {
             startIndex = positionCount / 2 * -1;  // cannot make it float ! ...
+            centerPosition = units[positionCount/2].transform.position;
         }
         else
         {
             startIndex = (positionCount - 1) / 2 * -1;
+            centerPosition = units[positionCount/2].transform.position;
         }
-        IEnumerable<int> positionIndexes = Enumerable.Range(startIndex, positionCount);
+        var toUnitPosition = centerPosition - hitPosition; // this is the vector FROM the hitPosition TO the centerPosition of the units
+        var crossVector = Vector3.Cross(toUnitPosition, Vector3.up).normalized; // this yields the vector perpendicular to both the vector going from the hitPosition to the centerPosition AND the vector going up, normalized back to 1 (else it is as long as toUnitPosition !)
 
+        IEnumerable<int> positionIndexes = Enumerable.Range(startIndex, positionCount);
         for (int i = 0; i < positionCount; i++)
         {
-            Vector3 position = hitPosition;
             modifier = (float)positionIndexes.ElementAt(i);
             if (isEven)
             {
                 modifier += 0.5f; // ... so we make it float after the fact !
             }
             //position.x += distance * modifier; // this is always making a line on the X axis, but we want the axis to be rotated according to the angle
-
-            // How to make it rotate ?
-            var x = Mathf.Cos(angle) * distance * modifier + hitPosition.x;
-            var y = hitPosition.y;
-            var z = Mathf.Sin(angle) * distance * modifier + hitPosition.z;
-            var pos = new Vector3(x,y,z);
+            var pos = hitPosition + crossVector * distance * modifier; // ;
 
             positionList.Add(pos);
         }
