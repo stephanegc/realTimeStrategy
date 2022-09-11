@@ -261,15 +261,19 @@ public class CameraController : MonoBehaviour
         if (isEven)
         {
             startIndex = positionCount / 2 * -1;  // cannot make it float ! ...
-            centerPosition = units[positionCount/2].transform.position;
+            int middleIndexBefore = (int)Mathf.Floor(positionCount / 2) -1;
+            int middleIndexAfter = (int)Mathf.Floor(positionCount / 2);
+            centerPosition = units[middleIndexAfter].transform.position + (units[middleIndexBefore].transform.position - units[middleIndexAfter].transform.position) / 2;
+            Debug.Log(" MidBefore / MidAfter : " + middleIndexBefore +  " / " + middleIndexAfter);
         }
         else
         {
             startIndex = (positionCount - 1) / 2 * -1;
-            centerPosition = units[positionCount/2].transform.position;
+            centerPosition = units[positionCount / 2].transform.position;
         }
         var toUnitPosition = centerPosition - hitPosition; // this is the vector FROM the hitPosition TO the centerPosition of the units
         var crossVector = Vector3.Cross(toUnitPosition, Vector3.up).normalized; // this yields the vector perpendicular to both the vector going from the hitPosition to the centerPosition AND the vector going up, normalized back to 1 (else it is as long as toUnitPosition !)
+        Debug.Log(" CROOOOOOOOOSS PROOOOODUCT : " + crossVector);
 
         IEnumerable<int> positionIndexes = Enumerable.Range(startIndex, positionCount);
         for (int i = 0; i < positionCount; i++)
