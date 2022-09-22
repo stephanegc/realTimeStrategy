@@ -26,7 +26,6 @@ public class UnitSelections : MonoBehaviour
     public void ClickSelect(Unit unitToAdd)
     {
         DeselectAll();
-        Debug.Log("Adding unit to the list");
         unitsSelected.Add(unitToAdd);
         unitToAdd.transform.Find("SelectionHighlight").gameObject.SetActive(true);
         unitToAdd.isSelected = true;
@@ -52,7 +51,6 @@ public class UnitSelections : MonoBehaviour
     {
         if (!unitsSelected.Contains(unitToAdd))
         {
-            Debug.Log("Adding selected unit via drag to unitList and setting graphics to active");
             unitsSelected.Add(unitToAdd);
             unitToAdd.transform.Find("SelectionHighlight").gameObject.SetActive(true);
             unitToAdd.isSelected = true;
@@ -60,12 +58,9 @@ public class UnitSelections : MonoBehaviour
     }
 
     public void DeselectAll()
-    {
-        Debug.Log("Removing all selected units from the list");
-        
+    {        
         foreach (var unit in unitsSelected)
         {
-            Debug.Log("Removing : " + unit);
             unit.transform.Find("SelectionHighlight").gameObject.SetActive(false);
             unit.isSelected = false;
         }

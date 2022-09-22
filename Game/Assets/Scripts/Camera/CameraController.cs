@@ -63,7 +63,6 @@ public class CameraController : MonoBehaviour
         // when released click
         if (Input.GetMouseButtonUp(0))
         {
-            Debug.Log("Left mouse button released ! Adding selected units via drag");
             SelectUnits();
             startPosition = Input.mousePosition;
             endPosition = Input.mousePosition;
@@ -114,9 +113,7 @@ public class CameraController : MonoBehaviour
         }
         Vector3 pos = transform.position;
         pos.y -= Mathf.Round(scroll * 1000 * scrollSpeed * Time.deltaTime);
-        Debug.Log("position:" + pos.y);
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
-        Debug.Log("position clamped:" + pos.y);
         transform.position = pos;
     }
 
@@ -129,7 +126,6 @@ public class CameraController : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, clickable))
             {
-                Debug.Log("Clickable object hit by raycast !");
                 Unit unit = hit.collider.GetComponent<Unit>();
                 if (unit != null && unit.isSelectable)
                 {
@@ -159,7 +155,7 @@ public class CameraController : MonoBehaviour
             {
                 List<Vector3> targetPositionList = GetPositionList(hit.point, 3f, UnitSelections.Instance.unitsSelected);
                 int targetPositionListIndex = 0;
-                Debug.Log("targetPositionList " + targetPositionList.Count);
+
                 foreach (var unit in UnitSelections.Instance.unitsSelected)
                 {
                     if (unit.GetComponent<Mover>() != null)
@@ -168,7 +164,6 @@ public class CameraController : MonoBehaviour
                         mover.targetPosition = targetPositionList[targetPositionListIndex];
                         mover.aimingForTargetUnit = false;
                         targetPositionListIndex += 1;
-                        Debug.Log(mover.targetPosition);
                     }
                 }
             }
@@ -238,10 +233,8 @@ public class CameraController : MonoBehaviour
     {
         foreach (var unit in UnitSelections.Instance.unitList)
         {
-            Debug.Log("Checking unit : " + unit);
             if (selectionBox.Contains(myCam.WorldToScreenPoint(unit.transform.position)) && unit.isSelectable)
             {
-                Debug.Log("Sending the unit to the DragSelect");
                 UnitSelections.Instance.DragSelect(unit);
             }
         }
@@ -264,7 +257,6 @@ public class CameraController : MonoBehaviour
             int middleIndexBefore = (int)Mathf.Floor(positionCount / 2) -1;
             int middleIndexAfter = (int)Mathf.Floor(positionCount / 2);
             centerPosition = units[middleIndexAfter].transform.position + (units[middleIndexBefore].transform.position - units[middleIndexAfter].transform.position) / 2;
-            Debug.Log(" MidBefore / MidAfter : " + middleIndexBefore +  " / " + middleIndexAfter);
         }
         else
         {
@@ -273,7 +265,6 @@ public class CameraController : MonoBehaviour
         }
         var toUnitPosition = centerPosition - hitPosition; // this is the vector FROM the hitPosition TO the centerPosition of the units
         var crossVector = Vector3.Cross(toUnitPosition, Vector3.up).normalized; // this yields the vector perpendicular to both the vector going from the hitPosition to the centerPosition AND the vector going up, normalized back to 1 (else it is as long as toUnitPosition !)
-        Debug.Log(" CROOOOOOOOOSS PROOOOODUCT : " + crossVector);
 
         IEnumerable<int> positionIndexes = Enumerable.Range(startIndex, positionCount);
         for (int i = 0; i < positionCount; i++)
