@@ -8,7 +8,9 @@ public class PlayerStats : MonoBehaviour
     public float resourceTotal;
     [SerializeField] private float resourceTotalPre;
     private static PlayerStats _instance;
-    public TextMeshProUGUI resourceText; 
+    public TextMeshProUGUI resourceText;
+    public TextMeshProUGUI unitsSelectedNames;
+    private string unitsSelectedNamesNew;
     public static PlayerStats Instance { get { return _instance; } }
     // Start is called before the first frame update
     void Start()
@@ -35,5 +37,18 @@ public class PlayerStats : MonoBehaviour
             resourceText.text = resourceTotal.ToString() + "$";
         }
         resourceTotalPre = resourceTotal;
+
+        unitsSelectedNamesNew = "";
+        if (UnitSelections.Instance.unitsSelected.Count > 0)
+        {
+            foreach (var unit in UnitSelections.Instance.unitsSelected)
+            {
+                unitsSelectedNamesNew += unit.transform.name + " ";
+            }
+        }
+        if (unitsSelectedNames.text == "" || (unitsSelectedNamesNew != unitsSelectedNames.text))
+        {
+            unitsSelectedNames.text = unitsSelectedNamesNew;
+        }
     }
 }
