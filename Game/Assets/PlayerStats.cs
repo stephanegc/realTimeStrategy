@@ -14,7 +14,7 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         resourceTotal = 1000;
-        resourceText.text = resourceTotal.ToString();
+        resourceText.text = resourceTotal.ToString() + "$";
         // ensure that we destroy this instance if it already exists and isn't this one
         if (_instance != null && _instance != this)
         {
@@ -32,7 +32,7 @@ public class PlayerStats : MonoBehaviour
         // check if different first, else will always be the same !
         if (resourceTotal != resourceTotalPre)
         {
-            resourceText.text = resourceTotal.ToString();
+            resourceText.text = resourceTotal.ToString() + "$";
         }
         resourceTotalPre = resourceTotal;
     }
