@@ -153,7 +153,7 @@ public class CameraController : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                List<Vector3> targetPositionList = GetPositionList(hit.point, 3f, UnitSelections.Instance.unitsSelected);
+                List<Vector3> targetPositionList = GetPositionList(hit.point, 2f, UnitSelections.Instance.unitsSelected);
                 int targetPositionListIndex = 0;
 
                 foreach (var unit in UnitSelections.Instance.unitsSelected)
@@ -242,7 +242,7 @@ public class CameraController : MonoBehaviour
 
     private List<Vector3> GetPositionList(Vector3 hitPosition, float distance, List<Unit> units)
     {
-        // Aim is to keep center relative to mouse both when odd (middle unit at center) and even (one unit on at half distance of center on each side)
+        // Aim is to keep center relative to mouse both when odd (middle unit at center) and even (one unit at half distance of center on each side)
         // Example ODD (1 unit : 0); (3 units: -1 0 +1); (5 units: -2 -1 0 +1 +2) %%% EVEN (2 units : -0.5 +0.5); (4 units : -1.5 -0.5 +0.5 +1.5)
         List<Vector3> positionList = new List<Vector3>();
         int positionCount = units.Count;
@@ -265,18 +265,24 @@ public class CameraController : MonoBehaviour
         }
         var toUnitPosition = centerPosition - hitPosition; // this is the vector FROM the hitPosition TO the centerPosition of the units
         var crossVector = Vector3.Cross(toUnitPosition, Vector3.up).normalized; // this yields the vector perpendicular to both the vector going from the hitPosition to the centerPosition AND the vector going up, normalized back to 1 (else it is as long as toUnitPosition !)
+        //Debug.Log("toUnitPosition : " + toUnitPosition);
+        Debug.Log("crossVector : " + crossVector);
+        //var check = crossVector.x < 0 ;
+        if (crossVector.x < 0 || crossVector.z < 0)
+        {
+            crossVector = crossVector * -1;
+            Debug.Log("crossVector MODIF : " + crossVector);
+        }
 
         IEnumerable<int> positionIndexes = Enumerable.Range(startIndex, positionCount);
         for (int i = 0; i < positionCount; i++)
         {
-            modifier = (float)positionIndexes.ElementAt(i);
+            modifier = (float)positionIndexes.ElementAt(i); // ... so we make it float after the fact !
             if (isEven)
             {
-                modifier += 0.5f; // ... so we make it float after the fact !
+                modifier += 0.5f; 
             }
-            //position.x += distance * modifier; // this is always making a line on the X axis, but we want the axis to be rotated according to the angle
-            var pos = hitPosition + crossVector * distance * modifier; // ;
-
+            var pos = hitPosition + crossVector * distance * modifier; 
             positionList.Add(pos);
         }
         return positionList;

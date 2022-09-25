@@ -77,7 +77,7 @@ public class Mover : Unit
 
     public void SetIdle()
     {
-        Debug.Log("Setting to IDLE");
+        //Debug.Log("Setting to IDLE");
         isMoving = false;
         animator.SetTrigger("Idle");
     }
