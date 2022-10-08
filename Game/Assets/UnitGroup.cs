@@ -9,11 +9,11 @@ public class UnitGroup : MonoBehaviour
     public string formation;
 
     // CONSTRUCTOR
-    public UnitGroup(KeyCode keyCode, List<Unit> unitList)
-    {
-        this.keyCode = keyCode;
-        this.unitList = unitList;
-    }
+    //public UnitGroup(KeyCode keyCode, List<Unit> unitList)
+    //{
+    //    this.keyCode = keyCode;
+    //    this.unitList = unitList;
+    //}
 
     // Start is called before the first frame update
     void Start()

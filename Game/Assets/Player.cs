@@ -24,12 +24,13 @@ public class Player : MonoBehaviour
     void Update()
     {
         KeyCode groupKeyPressed = GetGroupKeyPressed();
+        UnitGroup unitGroupOfGroupKey = GetUnitGroupOfGroupKey(groupKeyPressed);
         if (Input.GetKey(KeyCode.LeftControl) && groupKeyPressed != KeyCode.None)
         {
             SetNewUnitGroup(UnitSelection.Instance.unitsSelected, groupKeyPressed);
-        } else if (groupKeyPressed != KeyCode.None)
+        } else if (groupKeyPressed != KeyCode.None && unitGroupOfGroupKey != null)
         {
-            SelectUnitGroup(groupKeyPressed);
+            SelectUnitGroup(unitGroupOfGroupKey);
         }
     }
 
@@ -43,12 +44,10 @@ public class Player : MonoBehaviour
         Debug.Log("unitGroupNew" + unitGroupNew.unitList.Count);
     }
 
-    public void SelectUnitGroup(KeyCode keyCode)
+    public void SelectUnitGroup(UnitGroup unitGroupOfGroupKey)
     {
-        UnitGroup unitGroupToSelect = unitGroupList.Find(i => i.keyCode == keyCode);
-        Debug.Log("unitGroupToSelect" + unitGroupToSelect.unitList);
-        Debug.Log("unitGroupToSelect" + unitGroupToSelect.unitList.Count);
-        UnitSelection.Instance.SelectUnits(unitGroupToSelect.unitList);
+        Debug.Log("unitGroupOfGroupKey" + unitGroupOfGroupKey.unitList.Count);
+        UnitSelection.Instance.SelectUnits(unitGroupOfGroupKey.unitList);
     }
 
     public KeyCode GetGroupKeyPressed()
@@ -61,5 +60,17 @@ public class Player : MonoBehaviour
             }
         }
         return KeyCode.None;
+    }
+
+    public UnitGroup GetUnitGroupOfGroupKey(KeyCode keyCode)
+    {
+        foreach(UnitGroup unitGroup in unitGroupList)
+        {
+            if (unitGroup.keyCode == keyCode)
+            {
+                return unitGroup;
+            }
+        }
+        return null;
     }
 }
