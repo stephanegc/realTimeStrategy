@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     //private CameraController cameraController;
-    public List<UnitGroup> unitGroupList = new List<UnitGroup>();
+    public List<UnitGroup> unitGroupList;
     public UnitGroup unitGroupPrefab;
     List<KeyCode> groupKeyCodeList = new List<KeyCode> { KeyCode.Alpha0, KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9 };
 
@@ -27,21 +27,16 @@ public class Player : MonoBehaviour
         UnitGroup unitGroupOfGroupKey = GetUnitGroupOfGroupKey(groupKeyPressed);
         if (Input.GetKey(KeyCode.LeftControl) && groupKeyPressed != KeyCode.None)
         {
-            SetNewUnitGroup(UnitSelection.Instance.unitsSelected, groupKeyPressed);
+            SetNewUnitGroup(UnitSelection.Instance.CloneUnitsSelected(), groupKeyPressed);
         } else if (groupKeyPressed != KeyCode.None && unitGroupOfGroupKey != null)
         {
             SelectUnitGroup(unitGroupOfGroupKey);
         }
     }
 
-    public void SetNewUnitGroup(List<Unit> unitList, KeyCode keycode)
+    public void SetNewUnitGroup(List<Unit> unitList, KeyCode keyCode)
     {
-        //this.gameObject.AddComponent
-        UnitGroup unitGroupNew = (UnitGroup)Instantiate(unitGroupPrefab);
-        unitGroupNew.keyCode = keycode;
-        unitGroupNew.unitList = unitList;
-        unitGroupList.Add(unitGroupNew);
-        Debug.Log("unitGroupNew" + unitGroupNew.unitList.Count);
+        unitGroupList.Add(Instantiate(unitGroupPrefab).Init(keyCode, unitList));
     }
 
     public void SelectUnitGroup(UnitGroup unitGroupOfGroupKey)
@@ -64,7 +59,7 @@ public class Player : MonoBehaviour
 
     public UnitGroup GetUnitGroupOfGroupKey(KeyCode keyCode)
     {
-        foreach(UnitGroup unitGroup in unitGroupList)
+        foreach (UnitGroup unitGroup in unitGroupList)
         {
             if (unitGroup.keyCode == keyCode)
             {

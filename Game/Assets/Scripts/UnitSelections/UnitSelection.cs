@@ -170,4 +170,10 @@ public class UnitSelection : MonoBehaviour
             }
         }
     }
+
+    // Necessary to be able to create UnitGroups that are PERSISTENT and not constantly changed to what the unitsSelected is atm
+    public List<Unit> CloneUnitsSelected()
+    {
+        return new List<Unit>(unitsSelected);
+    }
 }

@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class UnitGroup : MonoBehaviour
 {
-    public List<Unit> unitList = new List<Unit>();
+    public List<Unit> unitList;
     public KeyCode keyCode;
     public string formation;
 
-    // CONSTRUCTOR
-    //public UnitGroup(KeyCode keyCode, List<Unit> unitList)
-    //{
-    //    this.keyCode = keyCode;
-    //    this.unitList = unitList;
-    //}
+    // CONSTRUCTOR : this allows to instantiate a UnitGroup with the expected inputs AND return "this" which enables method chaining ! 
+    public UnitGroup Init(KeyCode keyCode, List<Unit> unitList)
+    {
+        this.keyCode = keyCode;
+        this.unitList = unitList;
+        return this;
+    }
 
     // Start is called before the first frame update
     void Start()
