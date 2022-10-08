@@ -118,7 +118,6 @@ public class CameraController : MonoBehaviour
 
     private void CastRay(string mouseButton)
     {
-        
         Ray ray = myCam.ScreenPointToRay(Input.mousePosition);
 
         if (mouseButton == "left")
@@ -128,14 +127,13 @@ public class CameraController : MonoBehaviour
                 Unit unit = hit.collider.GetComponent<Unit>();
                 if (unit != null && unit.isSelectable)
                 {
-                    Mover mover = hit.collider.GetComponent<Mover>();
                     if (Input.GetKey(KeyCode.LeftShift))
                     {
-                        UnitSelections.Instance.ShiftClickSelect(unit);
+                        UnitSelection.Instance.ShiftClickSelect(unit);
                     }
                     else
                     {
-                        UnitSelections.Instance.ClickSelect(unit);
+                        UnitSelection.Instance.ClickSelect(unit);
                     }
                 }
             }
@@ -143,7 +141,7 @@ public class CameraController : MonoBehaviour
             {
                 if (!Input.GetKey(KeyCode.LeftShift))
                 {
-                    UnitSelections.Instance.DeselectAll();
+                    UnitSelection.Instance.DeselectAll();
                 }
             }
         }
@@ -152,15 +150,15 @@ public class CameraController : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                UnitSelections.Instance.SetUnitsSelectedPositions(hit.point);
-                UnitSelections.Instance.ApplyUnitsSelectedPosition();
+                UnitSelection.Instance.SetUnitsSelectedPositions(hit.point);
+                UnitSelection.Instance.ApplyUnitsSelectedPosition();
             }
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, clickable))
             {
                 if (hit.collider.GetComponent<Unit>() != null)
                 {
                     Unit hitUnit = hit.collider.GetComponent<Unit>();
-                    UnitSelections.Instance.SetUnitsSelectedTarget(hitUnit);
+                    UnitSelection.Instance.SetUnitsSelectedTarget(hitUnit);
                 }
             }
         }
@@ -209,11 +207,11 @@ public class CameraController : MonoBehaviour
 
     void SelectUnits()
     {
-        foreach (var unit in UnitSelections.Instance.unitList)
+        foreach (var unit in UnitSelection.Instance.unitList)
         {
             if (selectionBox.Contains(myCam.WorldToScreenPoint(unit.transform.position)) && unit.isSelectable)
             {
-                UnitSelections.Instance.DragSelect(unit);
+                UnitSelection.Instance.DragSelect(unit);
             }
         }
     }

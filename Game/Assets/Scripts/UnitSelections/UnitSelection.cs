@@ -2,15 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class UnitSelections : MonoBehaviour
+public class UnitSelection : MonoBehaviour
 {
     public List<Unit> unitList = new List<Unit>();
     public List<Unit> unitsSelected = new List<Unit>();
     public List<Vector3> unitsSelectedPositions = new List<Vector3>();
     public float distanceBetweenUnits = 2f;
 
-    private static UnitSelections _instance;
-    public static UnitSelections Instance { get { return _instance; } }
+    private static UnitSelection _instance;
+    public static UnitSelection Instance { get { return _instance; } }
 
     private void Awake()
     {
@@ -50,6 +50,11 @@ public class UnitSelections : MonoBehaviour
         }
     }
 
+    public void DoubleClickSelect(Unit unitToAdd)
+    { 
+        //TODO
+    }
+
     public void DragSelect(Unit unitToAdd)
     {
         if (!unitsSelected.Contains(unitToAdd))
@@ -73,7 +78,7 @@ public class UnitSelections : MonoBehaviour
     
     public void Deselect(Unit unitToDeselect)
     {
-
+        //TODO
     }
 
     public void SetUnitsSelectedPositions(Vector3 hitPosition)

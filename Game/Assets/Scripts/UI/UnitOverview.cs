@@ -17,9 +17,9 @@ public class UnitOverview : MonoBehaviour
     void Update()
     {
         unitsSelectedNamesNew = "";
-        if (UnitSelections.Instance.unitsSelected.Count > 0)
+        if (UnitSelection.Instance.unitsSelected.Count > 0)
         {
-            foreach (var unit in UnitSelections.Instance.unitsSelected)
+            foreach (var unit in UnitSelection.Instance.unitsSelected)
             {
                 unitsSelectedNamesNew += unit.transform.name + " ";
             }

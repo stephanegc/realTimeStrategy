@@ -31,7 +31,7 @@ public class Unit : MonoBehaviour
     protected virtual void Start()
     {
         //add this unit to the list
-        UnitSelections.Instance.unitList.Add(this);
+        UnitSelection.Instance.unitList.Add(this);
         health = maxHealth;
         isSelectable = true;
         animator = GetComponent<Animator>();
@@ -41,7 +41,7 @@ public class Unit : MonoBehaviour
     protected virtual void OnDestroy()
     {
         //remove it from the list when destroyerd
-        UnitSelections.Instance.unitList.Remove(this);
+        UnitSelection.Instance.unitList.Remove(this);
     }
 
     protected virtual void Update()

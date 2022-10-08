@@ -1,0 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class UnitGroup : MonoBehaviour
+{
+    List<Unit> unitList = new List<Unit>();
+    public KeyCode keyCode;
+    public string formation;
+
+    // CONSTRUCTOR
+    public UnitGroup(KeyCode keyCode, List<Unit> unitList)
+    {
+        this.keyCode = keyCode;
+        this.unitList = unitList;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
