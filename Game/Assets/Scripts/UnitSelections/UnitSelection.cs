@@ -81,6 +81,18 @@ public class UnitSelection : MonoBehaviour
         //TODO
     }
 
+    public void SelectUnits(List<Unit> unitList)
+    {
+        DeselectAll();
+        foreach (Unit unit in unitList)
+        {
+            Debug.Log("Selecting :" + unit.ToString());
+            unitsSelected.Add(unit);
+            unit.transform.Find("SelectionHighlight").gameObject.SetActive(true);
+            unit.isSelected = true;
+        }
+    }
+
     public void SetUnitsSelectedPositions(Vector3 hitPosition)
     {
         // Aim is to keep center relative to mouse both when odd (middle unit at center) and even (one unit at half distance of center on each side)

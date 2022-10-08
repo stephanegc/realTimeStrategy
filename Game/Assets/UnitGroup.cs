@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UnitGroup : MonoBehaviour
 {
-    List<Unit> unitList = new List<Unit>();
+    public List<Unit> unitList = new List<Unit>();
     public KeyCode keyCode;
     public string formation;
 

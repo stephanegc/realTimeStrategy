@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private CameraController cameraController;
-    private UnitSelection unitSelection;
+    //private CameraController cameraController;
     public List<UnitGroup> unitGroupList = new List<UnitGroup>();
-    private 
+    public UnitGroup unitGroupPrefab;
+    List<KeyCode> groupKeyCodeList = new List<KeyCode> { KeyCode.Alpha0, KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9 };
+
+    void Awake()
+    {
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,22 +23,43 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        KeyCode keyCode = Input.GetKey
-        if (Input.GetKey(KeyCode.Alpha0))
+        KeyCode groupKeyPressed = GetGroupKeyPressed();
+        if (Input.GetKey(KeyCode.LeftControl) && groupKeyPressed != KeyCode.None)
         {
-            SetNewUnitGroup(unitSelection, );
+            SetNewUnitGroup(UnitSelection.Instance.unitsSelected, groupKeyPressed);
+        } else if (groupKeyPressed != KeyCode.None)
+        {
+            SelectUnitGroup(groupKeyPressed);
         }
     }
 
-    public void SetNewUnitGroup(UnitSelection unitSelection, KeyCode keycode)
+    public void SetNewUnitGroup(List<Unit> unitList, KeyCode keycode)
     {
-        UnitGroup unitGroup = new UnitGroup(keycode, unitSelection.unitsSelected);
-        unitGroupList.Add(unitGroup);
-        
+        //this.gameObject.AddComponent
+        UnitGroup unitGroupNew = (UnitGroup)Instantiate(unitGroupPrefab);
+        unitGroupNew.keyCode = keycode;
+        unitGroupNew.unitList = unitList;
+        unitGroupList.Add(unitGroupNew);
+        Debug.Log("unitGroupNew" + unitGroupNew.unitList.Count);
     }
 
-    public void SelectUnitGroup()
+    public void SelectUnitGroup(KeyCode keyCode)
     {
+        UnitGroup unitGroupToSelect = unitGroupList.Find(i => i.keyCode == keyCode);
+        Debug.Log("unitGroupToSelect" + unitGroupToSelect.unitList);
+        Debug.Log("unitGroupToSelect" + unitGroupToSelect.unitList.Count);
+        UnitSelection.Instance.SelectUnits(unitGroupToSelect.unitList);
+    }
 
+    public KeyCode GetGroupKeyPressed()
+    {
+        foreach (KeyCode keyCode in groupKeyCodeList)
+        {
+            if (Input.GetKeyDown(keyCode))
+            {
+                return keyCode;
+            }
+        }
+        return KeyCode.None;
     }
 }
