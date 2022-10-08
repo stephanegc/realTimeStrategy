@@ -139,4 +139,18 @@ public class UnitSelections : MonoBehaviour
             }
         }
     }
+
+    public void SetUnitsSelectedTarget(Unit hitUnit)
+    {
+        foreach (Unit unit in unitsSelected)
+        {
+            unit.targetUnit = hitUnit;
+            if (unit.GetComponent<Mover>() != null)
+            {
+                Mover mover = unit.GetComponent<Mover>();
+                mover.targetPosition = hitUnit.transform.position;
+                mover.aimingForTargetUnit = true;
+            }
+        }
+    }
 }

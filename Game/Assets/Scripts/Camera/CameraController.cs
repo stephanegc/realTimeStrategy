@@ -159,18 +159,8 @@ public class CameraController : MonoBehaviour
             {
                 if (hit.collider.GetComponent<Unit>() != null)
                 {
-                    var hitUnit = hit.collider.GetComponent<Unit>();
-                    foreach (var unit in UnitSelections.Instance.unitsSelected)
-                    {
-                        Unit unitTemp = unit.GetComponent<Unit>();
-                        unitTemp.targetUnit = hitUnit;
-                        if (unit.GetComponent<Mover>() != null)
-                        {
-                            Mover mover = unit.GetComponent<Mover>();
-                            mover.targetPosition = hitUnit.transform.position;
-                            mover.aimingForTargetUnit = true;
-                        }
-                    }
+                    Unit hitUnit = hit.collider.GetComponent<Unit>();
+                    UnitSelections.Instance.SetUnitsSelectedTarget(hitUnit);
                 }
             }
         }
