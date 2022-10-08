@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class Wave : MonoBehaviour
 {
-    public List<Mover> movers = new List<Mover>();
+    public List<Mover> movers;
     public Transform spawnPoint;
     public Transform targetPoint;
+
+    public Wave Init(Transform spawnPoint, Transform targetPoint, List<Mover> movers)
+    {
+        this.spawnPoint = spawnPoint;
+        this.targetPoint = targetPoint;
+        this.movers = movers;
+        return this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

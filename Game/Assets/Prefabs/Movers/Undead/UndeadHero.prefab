@@ -3183,6 +3183,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4317244163750009874}
   - component: {fileID: 4317244163750009875}
+  - component: {fileID: 988893116106993970}
+  - component: {fileID: -4454783043530590987}
   m_Layer: 0
   m_Name: UndeadHero
   m_TagString: Untagged
@@ -3233,6 +3235,63 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &988893116106993970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4317244163750009872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8417529a2d8a8be47800521d3f2802a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  health: 0
+  isSelectable: 1
+  isSelected: 0
+  canMove: 0
+  canCreateUnits: 0
+  canAttack: 0
+  canGatherResources: 0
+  canAttackNonResourcesUnits: 0
+  targetUnit: {fileID: 0}
+  distanceToTargetUnit: 0
+  distanceToTargetUnitPosition: 0
+  attackSpeed: 2
+  attackRange: 2
+  attackCountDown: 0
+  attackPower: 0
+  animator: {fileID: 0}
+  resourceCost: 0
+  myAgent: {fileID: -4454783043530590987}
+  distanceToTargetPosition: 0
+  aimingForTargetUnit: 0
+  isMoving: 0
+  targetPosition: {x: 0, y: 0, z: 0}
+--- !u!195 &-4454783043530590987
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4317244163750009872}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &4317244163785299443
 GameObject:
   m_ObjectHideFlags: 0
