@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
 
 public class CameraController : MonoBehaviour
 {
@@ -153,19 +152,8 @@ public class CameraController : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                List<Vector3> targetPositionList = GetPositionList(hit.point, 2f, UnitSelections.Instance.unitsSelected);
-                int targetPositionListIndex = 0;
-
-                foreach (var unit in UnitSelections.Instance.unitsSelected)
-                {
-                    if (unit.GetComponent<Mover>() != null)
-                    {
-                        Mover mover = unit.GetComponent<Mover>();
-                        mover.targetPosition = targetPositionList[targetPositionListIndex];
-                        mover.aimingForTargetUnit = false;
-                        targetPositionListIndex += 1;
-                    }
-                }
+                UnitSelections.Instance.SetUnitsSelectedPositions(hit.point);
+                UnitSelections.Instance.ApplyUnitsSelectedPosition();
             }
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, clickable))
             {
@@ -240,51 +228,5 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    private List<Vector3> GetPositionList(Vector3 hitPosition, float distance, List<Unit> units)
-    {
-        // Aim is to keep center relative to mouse both when odd (middle unit at center) and even (one unit at half distance of center on each side)
-        // Example ODD (1 unit : 0); (3 units: -1 0 +1); (5 units: -2 -1 0 +1 +2) %%% EVEN (2 units : -0.5 +0.5); (4 units : -1.5 -0.5 +0.5 +1.5)
-        List<Vector3> positionList = new List<Vector3>();
-        int positionCount = units.Count;
-        var isEven = (positionCount % 2) == 0;
-        int startIndex;
-        float modifier;
-        Vector3 centerPosition;
- 
-        if (isEven)
-        {
-            startIndex = positionCount / 2 * -1;  // cannot make it float ! ...
-            int middleIndexBefore = (int)Mathf.Floor(positionCount / 2) -1;
-            int middleIndexAfter = (int)Mathf.Floor(positionCount / 2);
-            centerPosition = units[middleIndexAfter].transform.position + (units[middleIndexBefore].transform.position - units[middleIndexAfter].transform.position) / 2;
-        }
-        else
-        {
-            startIndex = (positionCount - 1) / 2 * -1;
-            centerPosition = units[positionCount / 2].transform.position;
-        }
-        var toUnitPosition = centerPosition - hitPosition; // this is the vector FROM the hitPosition TO the centerPosition of the units
-        var crossVector = Vector3.Cross(toUnitPosition, Vector3.up).normalized; // this yields the vector perpendicular to both the vector going from the hitPosition to the centerPosition AND the vector going up, normalized back to 1 (else it is as long as toUnitPosition !)
-        //Debug.Log("toUnitPosition : " + toUnitPosition);
-        Debug.Log("crossVector : " + crossVector);
-        //var check = crossVector.x < 0 ;
-        if (crossVector.x < 0 || crossVector.z < 0)
-        {
-            crossVector = crossVector * -1;
-            Debug.Log("crossVector MODIF : " + crossVector);
-        }
-
-        IEnumerable<int> positionIndexes = Enumerable.Range(startIndex, positionCount);
-        for (int i = 0; i < positionCount; i++)
-        {
-            modifier = (float)positionIndexes.ElementAt(i); // ... so we make it float after the fact !
-            if (isEven)
-            {
-                modifier += 0.5f; 
-            }
-            var pos = hitPosition + crossVector * distance * modifier; 
-            positionList.Add(pos);
-        }
-        return positionList;
-    }
+    
 }
