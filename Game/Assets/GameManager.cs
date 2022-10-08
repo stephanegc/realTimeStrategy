@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     private float timeBetweenWaves = 5f;
     public float countDown = 5f;
     public Mover mover;
-    private int numberOfMovers = 5;
+    private int numberOfMovers = 1;
     public int waveCount = 1;
     public Transform spawnPoint;
     public Transform targetPoint;
