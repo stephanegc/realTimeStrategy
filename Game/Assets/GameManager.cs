@@ -9,8 +9,6 @@ public class GameManager : MonoBehaviour
     public Mover mover;
     private int numberOfMovers = 1;
     public int waveCount = 1;
-    public Transform spawnPoint;
-    public Transform targetPoint;
     //private Wave wave = new Wave;
 
 
@@ -37,8 +35,8 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < numberOfMovers; i++)
         {
-            Mover moverNew = (Mover)Instantiate(mover, spawnPoint.position, spawnPoint.rotation);
-            moverNew.targetPosition = targetPoint.position;
+            Mover moverNew = (Mover)Instantiate(mover, transform.Find("SpawnPoint").transform.position, transform.Find("SpawnPoint").transform.rotation);
+            moverNew.targetPosition = transform.Find("TargetPoint").transform.position;
         }
         waveCount += 1;
     }

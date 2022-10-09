@@ -41,7 +41,6 @@ public class Player : MonoBehaviour
 
     public void SelectUnitGroup(UnitGroup unitGroupOfGroupKey)
     {
-        Debug.Log("unitGroupOfGroupKey" + unitGroupOfGroupKey.unitList.Count);
         UnitSelection.Instance.SelectUnits(unitGroupOfGroupKey.unitList);
     }
 

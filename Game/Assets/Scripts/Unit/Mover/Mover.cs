@@ -23,9 +23,9 @@ public class Mover : Unit
         aimingForTargetUnit = false;
         if (targetPosition == null)
         {
+            Debug.Log("Setting targetPosition to : " + targetPosition);
             targetPosition = transform.position;
             myAgent.SetDestination(targetPosition);
-            Debug.Log("Setting targetPosition to : " + targetPosition);
         }
     }
 
