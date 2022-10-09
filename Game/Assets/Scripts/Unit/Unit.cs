@@ -70,6 +70,16 @@ public class Unit : MonoBehaviour
         attackCountDown -= Time.deltaTime;
     }
 
+    public void SetTargetUnit(Unit unit)
+    {
+        // ensure a unit cannot target itself
+        if (GameObject.ReferenceEquals(this.gameObject, unit.gameObject))
+        {
+            return;
+        }
+        this.targetUnit = unit;
+    }
+
     private bool CanAttackTargetUnit()
     {
         if (targetUnit == null)

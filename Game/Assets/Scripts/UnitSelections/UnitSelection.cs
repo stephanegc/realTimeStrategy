@@ -161,7 +161,7 @@ public class UnitSelection : MonoBehaviour
     {
         foreach (Unit unit in unitsSelected)
         {
-            unit.targetUnit = hitUnit;
+            unit.SetTargetUnit(hitUnit); 
             if (unit.GetComponent<Mover>() != null)
             {
                 Mover mover = unit.GetComponent<Mover>();
