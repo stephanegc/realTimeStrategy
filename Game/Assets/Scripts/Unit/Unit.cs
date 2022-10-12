@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class Unit : MonoBehaviour
 {
+    public Player player;
     public float maxHealth;
     public float health;
     public bool isSelectable = true;
@@ -22,8 +23,7 @@ public class Unit : MonoBehaviour
     public float attackRange = 2f;
     public float attackCountDown = 0f;
     public float attackPower;
-    public Animator animator;
-
+    
     public float resourceCost;
 
 
@@ -31,25 +31,28 @@ public class Unit : MonoBehaviour
     protected virtual void Start()
     {
         //add this unit to the list
-        UnitSelection.Instance.unitList.Add(this);
+        if (player != null)
+        {
+            player.unitSelection.unitList.Add(this);
+        }
         health = maxHealth;
         isSelectable = true;
-        animator = GetComponent<Animator>();
         distanceToTargetUnit = Mathf.Infinity;
     }
 
     protected virtual void OnDestroy()
     {
         //remove it from the list when destroyerd
-        UnitSelection.Instance.unitList.Remove(this);
+        if (player != null)
+        {
+            player.unitSelection.unitList.Remove(this);
+        }
     }
 
     protected virtual void Update()
     {
         if (health == 0)
         {
-            Debug.Log("Setting to DIE");
-            animator.SetTrigger("Die");
             Destroy(gameObject);
             return;
         }

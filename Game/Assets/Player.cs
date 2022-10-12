@@ -5,9 +5,11 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     //private CameraController cameraController;
+    public UnitSelection unitSelection;
     public List<UnitGroup> unitGroupList;
     public UnitGroup unitGroupPrefab;
     List<KeyCode> groupKeyCodeList = new List<KeyCode> { KeyCode.Alpha0, KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9 };
+    public float resourceTotal;
 
     void Awake()
     {
@@ -27,7 +29,7 @@ public class Player : MonoBehaviour
         UnitGroup unitGroupOfGroupKey = GetUnitGroupOfGroupKey(groupKeyPressed);
         if (Input.GetKey(KeyCode.LeftControl) && groupKeyPressed != KeyCode.None)
         {
-            SetNewUnitGroup(UnitSelection.Instance.CloneUnitsSelected(), groupKeyPressed);
+            SetNewUnitGroup(unitSelection.CloneUnitsSelected(), groupKeyPressed);
         } else if (groupKeyPressed != KeyCode.None && unitGroupOfGroupKey != null)
         {
             SelectUnitGroup(unitGroupOfGroupKey);
@@ -41,7 +43,7 @@ public class Player : MonoBehaviour
 
     public void SelectUnitGroup(UnitGroup unitGroupOfGroupKey)
     {
-        UnitSelection.Instance.SelectUnits(unitGroupOfGroupKey.unitList);
+        unitSelection.SelectUnits(unitGroupOfGroupKey.unitList);
     }
 
     public KeyCode GetGroupKeyPressed()

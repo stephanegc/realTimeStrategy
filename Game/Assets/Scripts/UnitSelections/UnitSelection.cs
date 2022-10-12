@@ -9,23 +9,6 @@ public class UnitSelection : MonoBehaviour
     public List<Vector3> unitsSelectedPositions = new List<Vector3>();
     public float distanceBetweenUnits = 2f;
 
-    private static UnitSelection _instance;
-    public static UnitSelection Instance { get { return _instance; } }
-
-    private void Awake()
-    {
-        // ensure that we destroy this instance if it already exists and isn't this one
-        if (_instance != null && _instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            _instance = this;
-        }
-    }
-
-
     public void ClickSelect(Unit unitToAdd)
     {
         DeselectAll();

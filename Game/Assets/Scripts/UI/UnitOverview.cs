@@ -5,6 +5,7 @@ using TMPro;
 
 public class UnitOverview : MonoBehaviour
 {
+    public Player player;
     public TextMeshProUGUI unitsSelectedNames;
     private string unitsSelectedNamesNew;
     // Start is called before the first frame update
@@ -17,9 +18,9 @@ public class UnitOverview : MonoBehaviour
     void Update()
     {
         unitsSelectedNamesNew = "";
-        if (UnitSelection.Instance.unitsSelected.Count > 0)
+        if (player.unitSelection.unitsSelected.Count > 0)
         {
-            foreach (var unit in UnitSelection.Instance.unitsSelected)
+            foreach (var unit in player.unitSelection.unitsSelected)
             {
                 unitsSelectedNamesNew += unit.transform.name + " ";
             }

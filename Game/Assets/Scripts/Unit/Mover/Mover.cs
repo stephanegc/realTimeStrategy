@@ -11,11 +11,13 @@ public class Mover : Unit
     public bool aimingForTargetUnit;
     public bool isMoving = false;
     public Vector3 targetPosition;
+    public Animator animator;
 
     protected virtual void Awake()
     {
         canMove = true;
         canAttack = true;
+        animator = GetComponent<Animator>();
         attackPower = 10f;
         myAgent.acceleration = 100f;
         myAgent.speed = 8f;
@@ -31,10 +33,13 @@ public class Mover : Unit
 
     protected override void Update()
     {
+        if (health == 0)
+        {
+            Debug.Log("Setting to DIE");
+            animator.SetTrigger("Die");
+        }
         base.Update();
         distanceToTargetPosition = Vector3.Distance(targetPosition, transform.position);
-
-        AnimatorStateInfo asi = GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
 
         // This make it move to it but then need to find a way to make it stop moving when very close, and override its position when we right click on the ground (without removing target unit)
         if (targetUnit != null && aimingForTargetUnit)

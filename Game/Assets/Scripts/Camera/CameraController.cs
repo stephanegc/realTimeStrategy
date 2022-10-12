@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class CameraController : MonoBehaviour
 {
     // Click
+    public Player player;
     Camera myCam;
     public LayerMask clickable;
     public LayerMask ground;
@@ -129,11 +130,11 @@ public class CameraController : MonoBehaviour
                 {
                     if (Input.GetKey(KeyCode.LeftShift))
                     {
-                        UnitSelection.Instance.ShiftClickSelect(unit);
+                        player.unitSelection.ShiftClickSelect(unit);
                     }
                     else
                     {
-                        UnitSelection.Instance.ClickSelect(unit);
+                        player.unitSelection.ClickSelect(unit);
                     }
                 }
             }
@@ -141,7 +142,7 @@ public class CameraController : MonoBehaviour
             {
                 if (!Input.GetKey(KeyCode.LeftShift))
                 {
-                    UnitSelection.Instance.DeselectAll();
+                    player.unitSelection.DeselectAll();
                 }
             }
         }
@@ -150,15 +151,15 @@ public class CameraController : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                UnitSelection.Instance.SetUnitsSelectedPositions(hit.point);
-                UnitSelection.Instance.ApplyUnitsSelectedPosition();
+                player.unitSelection.SetUnitsSelectedPositions(hit.point);
+                player.unitSelection.ApplyUnitsSelectedPosition();
             }
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, clickable))
             {
                 if (hit.collider.GetComponent<Unit>() != null)
                 {
                     Unit hitUnit = hit.collider.GetComponent<Unit>();
-                    UnitSelection.Instance.SetUnitsSelectedTarget(hitUnit);
+                    player.unitSelection.SetUnitsSelectedTarget(hitUnit);
                 }
             }
         }
@@ -207,11 +208,11 @@ public class CameraController : MonoBehaviour
 
     void SelectUnits()
     {
-        foreach (var unit in UnitSelection.Instance.unitList)
+        foreach (var unit in player.unitSelection.unitList)
         {
             if (selectionBox.Contains(myCam.WorldToScreenPoint(unit.transform.position)) && unit.isSelectable)
             {
-                UnitSelection.Instance.DragSelect(unit);
+                player.unitSelection.DragSelect(unit);
             }
         }
     }

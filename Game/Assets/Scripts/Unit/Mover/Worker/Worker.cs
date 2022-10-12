@@ -45,14 +45,14 @@ public class Worker : Mover
         }
         if (distanceToResourceBuilding <= 1)
         {
-            PlayerStats.Instance.resourceTotal += resourceTotal;
+            this.player.resourceTotal += resourceTotal;
             resourceTotal = 0f;
         }
         if (isGatheringResources && resourceTotal == 0f && distanceToResourceBuilding <= 1) // return to resource target after having deposited the resources to the resourceBuilding
         {
             targetPosition = targetUnit.transform.position;
         }
-        if (Input.GetKeyDown(KeyCode.B) && this.isSelected && PlayerStats.Instance.resourceTotal >= building.resourceCost)
+        if (Input.GetKeyDown(KeyCode.B) && this.isSelected && this.player.resourceTotal >= building.resourceCost)
         {
             StartCoroutine(Build(building));
         }
@@ -86,7 +86,8 @@ public class Worker : Mover
         yield return new WaitForSeconds(5f);
         Destroy(workerBuildingNew);
         Building buildingNew = (Building)Instantiate(building, transform.position, building.transform.rotation);
-        PlayerStats.Instance.resourceTotal -= buildingNew.resourceCost;
+        buildingNew.player = this.player;
+        this.player.resourceTotal -= buildingNew.resourceCost;
         animator.SetTrigger("Idle");
     }
 }
