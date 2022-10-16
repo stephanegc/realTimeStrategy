@@ -1652,6 +1652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f8468ccb40f5d441893ad679deef566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   maxHealth: 0
   health: 0
   isSelectable: 0
@@ -1668,13 +1669,13 @@ MonoBehaviour:
   attackRange: 2
   attackCountDown: 0
   attackPower: 0
-  animator: {fileID: 0}
   resourceCost: 0
   myAgent: {fileID: 5370571547249954291}
   distanceToTargetPosition: 0
   aimingForTargetUnit: 0
   isMoving: 0
   targetPosition: {x: 0, y: 0, z: 0}
+  animator: {fileID: 0}
   resourceTotal: 0
   resourceCap: 50
   workerBuilding: {fileID: 8725133021254122922, guid: b1e1b107f96f6d44b8057c1184cea1e7, type: 3}
