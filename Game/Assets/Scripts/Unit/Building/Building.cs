@@ -39,6 +39,11 @@ public class Building : Unit
             Worker worker = moverNew.GetComponent<Worker>();
             worker.resourceBuilding = this;
         }
+        if (targetUnit != null)
+        {
+            moverNew.targetUnit = targetUnit;
+            moverNew.aimingForTargetUnit = true;
+        }
         this.player.resourceTotal -= moverNew.resourceCost;
     }
 }

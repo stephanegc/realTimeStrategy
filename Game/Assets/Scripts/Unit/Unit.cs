@@ -75,6 +75,11 @@ public class Unit : MonoBehaviour
 
     public void SetTargetUnit(Unit unit)
     {
+        // ensure a unit cannot target another unit from the same player
+        if (GameObject.ReferenceEquals(this.player, unit.player))
+        {
+            return;
+        }
         // ensure a unit cannot target itself
         if (GameObject.ReferenceEquals(this.gameObject, unit.gameObject))
         {

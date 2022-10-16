@@ -90,15 +90,7 @@ public class Mover : Unit
     public bool HasDestinationChanged()
     {
         var distance = Vector3.Distance(targetPosition, myAgent.destination);
-        if (distance < 1)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-        
+        return distance > 1;       
     }
 
 }
