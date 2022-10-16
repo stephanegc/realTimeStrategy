@@ -23,11 +23,11 @@ public class Building : Unit
         base.Update();
         if (Input.GetKeyDown(KeyCode.B) && this.isSelected)
         {
-            StartCoroutine(CreateMover(mover));
+            StartCoroutine(CreateMover());
         }
     }
 
-    IEnumerator CreateMover(Mover mover)
+    public IEnumerator CreateMover()
     {
         yield return new WaitForSeconds(3f);
         Debug.Log("Creating unit at spawnPoint!");

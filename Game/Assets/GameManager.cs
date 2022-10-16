@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     private float timeBetweenWaves = 60f;
     public float countDown = 5f;
-    public Mover mover;
+    public Player playerAI;
     private int numberOfMovers = 1;
     public int waveCount = 1;
     //private Wave wave = new Wave;
@@ -35,8 +35,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < numberOfMovers; i++)
         {
-            Mover moverNew = (Mover)Instantiate(mover, transform.Find("SpawnPoint").transform.position, transform.Find("SpawnPoint").transform.rotation);
-            moverNew.targetPosition = transform.Find("TargetPoint").transform.position;
+            StartCoroutine(playerAI.mainBuilding.CreateMover());
         }
         waveCount += 1;
     }

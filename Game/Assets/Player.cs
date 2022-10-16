@@ -8,12 +8,13 @@ public class Player : MonoBehaviour
     public UnitSelection unitSelection;
     public List<UnitGroup> unitGroupList;
     public UnitGroup unitGroupPrefab;
+    public Building mainBuilding;
     List<KeyCode> groupKeyCodeList = new List<KeyCode> { KeyCode.Alpha0, KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9 };
     public float resourceTotal;
 
     void Awake()
     {
-
+        resourceTotal = 1000f;
     }
 
     // Start is called before the first frame update
