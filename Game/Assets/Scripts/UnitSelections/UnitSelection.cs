@@ -102,12 +102,10 @@ public class UnitSelection : MonoBehaviour
         var toUnitPosition = centerPosition - hitPosition; // this is the vector FROM the hitPosition TO the centerPosition of the units
         var crossVector = Vector3.Cross(toUnitPosition, Vector3.up).normalized; // this yields the vector perpendicular to both the vector going from the hitPosition to the centerPosition AND the vector going up, normalized back to 1 (else it is as long as toUnitPosition !)
         //Debug.Log("toUnitPosition : " + toUnitPosition);
-        Debug.Log("crossVector : " + crossVector);
         //var check = crossVector.x < 0 ;
         if (crossVector.x < 0 || crossVector.z < 0)
         {
             crossVector = crossVector * -1;
-            Debug.Log("crossVector MODIF : " + crossVector);
         }
 
         IEnumerable<int> positionIndexes = Enumerable.Range(startIndex, positionCount);

@@ -1146,11 +1146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903e72bc12cf10a42bf8513f5e12e7b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &415877055 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8833286974644589110, guid: 6de7a5f9df64abd43a6e6c407e49b05f, type: 3}
-  m_PrefabInstance: {fileID: 8833286974777618757}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &623436661 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 562598996907056905, guid: 53582293abc26a6479d68afa614fba06, type: 3}
@@ -2243,42 +2238,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8833286974644589106, guid: 6de7a5f9df64abd43a6e6c407e49b05f, type: 3}
   m_PrefabInstance: {fileID: 8833286974777618757}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 415877055}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 903e72bc12cf10a42bf8513f5e12e7b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &1460803602
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 415877055}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 3add72fcb625bc841b8309c9b9f7d61c, type: 3}
---- !u!208 &1460803603
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 415877055}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 12.264001, y: 10.811001, z: 13.195001}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -1.429, y: 0, z: 13.173}
-  m_TimeToStationary: 0.5
 --- !u!1001 &1483227624
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3351,26 +3316,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1004542615}
     m_Modifications:
-    - target: {fileID: 2140105308, guid: 6de7a5f9df64abd43a6e6c407e49b05f, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8833286974071841743, guid: 6de7a5f9df64abd43a6e6c407e49b05f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -11.666668
-      objectReference: {fileID: 0}
-    - target: {fileID: 8833286974071841743, guid: 6de7a5f9df64abd43a6e6c407e49b05f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.000022798777
-      objectReference: {fileID: 0}
-    - target: {fileID: 8833286974351333234, guid: 6de7a5f9df64abd43a6e6c407e49b05f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -17.500004
-      objectReference: {fileID: 0}
-    - target: {fileID: 8833286974351333234, guid: 6de7a5f9df64abd43a6e6c407e49b05f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.00007053216
-      objectReference: {fileID: 0}
     - target: {fileID: 8833286974644589106, guid: 6de7a5f9df64abd43a6e6c407e49b05f, type: 3}
       propertyPath: player
       value: 
@@ -3423,6 +3368,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: HumanTownHall
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2140105308, guid: 6de7a5f9df64abd43a6e6c407e49b05f, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6de7a5f9df64abd43a6e6c407e49b05f, type: 3}
