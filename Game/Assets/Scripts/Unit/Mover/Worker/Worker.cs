@@ -83,11 +83,13 @@ public class Worker : Mover
         Debug.Log("Setting to BUILD");
         GameObject workerBuildingNew = (GameObject)Instantiate(workerBuilding, transform.position, transform.rotation);
         animator.SetTrigger("Build");
+        canMove = false;
         yield return new WaitForSeconds(5f);
         Destroy(workerBuildingNew);
         Building buildingNew = (Building)Instantiate(building, transform.position, building.transform.rotation);
         buildingNew.player = this.player;
         this.player.resourceTotal -= buildingNew.resourceCost;
+        canMove = true;
         animator.SetTrigger("Idle");
     }
 }

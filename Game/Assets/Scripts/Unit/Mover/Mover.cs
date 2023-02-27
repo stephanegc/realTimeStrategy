@@ -52,22 +52,10 @@ public class Mover : Unit
             SetIdle();
         }
 
-        if (HasDestinationChanged()) // need to be able to trigger this also when isMoving !!! Else can NOT change destination before the unit has finished moving !!!
+        if (HasDestinationChanged() && canMove) // need to be able to trigger this also when isMoving !!! Else can NOT change destination before the unit has finished moving !!!
         {
             Move();
         }
-        //myAgent.velocity == Vector3.zero;
-        //)
-
-        //if (Mathf.Approximately(myAgent.velocity.x, 0) && Mathf.Approximately(myAgent.velocity.y, 0) && Mathf.Approximately(myAgent.velocity.z, 0))
-        //{
-        //    SetIdle();
-        //}
-
-        //if (isMoving && ( (distanceToTargetPosition <= 0.1 || distanceToTargetUnit <= 1.5) || (targetUnit == null || targetPosition == targetUnit.transform.position) )) 
-        //{
-        //    SetIdle();
-        //}
     }
 
     public void Move()
