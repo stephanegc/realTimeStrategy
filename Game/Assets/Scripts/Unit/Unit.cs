@@ -73,6 +73,11 @@ public class Unit : MonoBehaviour
         attackCountDown -= Time.deltaTime;
     }
 
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+    }
+
     public void SetTargetUnit(Unit unit)
     {
         // ensure a unit cannot target another unit from the same player
@@ -101,7 +106,7 @@ public class Unit : MonoBehaviour
     protected virtual void Attack(Unit targetUnit)
     {
         Debug.Log(this + " ATTACKING " + targetUnit);
-        targetUnit.health -= attackPower;
+        targetUnit.TakeDamage(attackPower);
     }
 }
 
