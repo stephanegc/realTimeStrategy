@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private float timeBetweenWaves = 60f;
+    private float timeBetweenWaves = 30f;
     public float countDown = 5f;
     public Player playerAI;
     private int numberOfMovers = 1;

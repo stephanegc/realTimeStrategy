@@ -12,7 +12,7 @@ public class Building : Unit
     {
         base.Start();
         canCreateUnits = true;
-        maxHealth = 1000f;
+        maxHealth = 100f;
         health = maxHealth;
         resourceCost = 200f;
     }
@@ -20,7 +20,13 @@ public class Building : Unit
     // Update is called once per frame
     protected override void Update()
     {
+        if (health <= 0)
+        {
+            Debug.Log("quitting app !");
+            Application.Quit();
+        }
         base.Update();
+        
         if (Input.GetKeyDown(KeyCode.B) && this.isSelected)
         {
             StartCoroutine(CreateMover());
