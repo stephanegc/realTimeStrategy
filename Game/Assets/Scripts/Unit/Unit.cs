@@ -51,7 +51,7 @@ public class Unit : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (health == 0)
+        if (health <= 0)
         {
             Destroy(gameObject);
             return;
